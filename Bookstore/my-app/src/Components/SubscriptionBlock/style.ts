@@ -11,6 +11,7 @@ export const WrapperSubscriptionBlock = styled("div")`
     font-weight: 700;
     line-height: 60px;
     text-transform: uppercase;
+    font-family: "Bebas Neue", sans-serif;
   }
 
   p {
@@ -24,7 +25,6 @@ export const WrapperSubscriptionBlock = styled("div")`
 
   label {
     display: flex;
-    height: 56px;
   }
 
   input {
@@ -38,8 +38,35 @@ export const WrapperSubscriptionBlock = styled("div")`
     border: none;
     outline: none;
   }
+
+  @media (max-width: 640px) {
+    padding: 24px;
+
+    h3 {
+      font-size: 28px;
+      line-height: 40px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 24px;
+    }
+    label {
+      flex-wrap: wrap;
+    }
+
+    input {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const StyledButton = styled("div")`
-  width: 147px;
+  max-width: 147px;
+  width: 100%;
+  font-family: "Bebas Neue", sans-serif;
+  @media (max-width: 640px) {
+    max-width: 100%;
+    height: 56px;
+  }
 `;

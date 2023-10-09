@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 interface ICustomButtonProps {
   typebtn: "fill" | "ghost";
-  fontSize: string;
 }
 
 export const StyledCustomButton = styled("button")<ICustomButtonProps>`
   border: none;
+  outline: none;
   background-color: none;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${(props) => props.fontSize};
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -23,7 +23,7 @@ export const StyledCustomButton = styled("button")<ICustomButtonProps>`
   cursor: pointer;
   ${(props) => {
     if (props.typebtn === "fill") {
-      return "background-color: #313037; color: #fff;";
+      return "background-color: #313037; color: #fff;  font-family: 'Bebas Neue', sans-serif;";
     }
     if (props.typebtn === "ghost") {
       return "background-color: inherit;";

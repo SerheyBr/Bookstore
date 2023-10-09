@@ -5,9 +5,11 @@ interface IBurgerMenuProps {
 }
 
 export const StyledBurgerMenu = styled("div")<IBurgerMenuProps>`
-  position: absolute;
-  top: -36px;
-  left: -351px;
+  position: fixed;
+  /* top: -36px;
+  left: -351px; */
+  top: 0;
+  right: 0;
   width: 400px;
   height: 100vh;
   background-color: #fff;
@@ -16,7 +18,7 @@ export const StyledBurgerMenu = styled("div")<IBurgerMenuProps>`
   align-items: center;
   padding-bottom: 56px;
   ${(props) => (props.$open ? "display: flex" : "display: none")};
-
+  z-index: 3;
   h3 {
     color: #313037;
     font-size: 32px;

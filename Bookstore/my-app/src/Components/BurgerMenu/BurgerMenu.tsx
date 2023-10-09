@@ -16,7 +16,7 @@ const BurgerMenu: FC<IBurgerMenuProps> = ({ $open }) => {
       <h3>Favorites</h3>
       <h3>Cart</h3>
       <StyledBtn>
-        <CustomButton title={"log out"} typebtn={"fill"} fontSize={"24px"} />
+        <CustomButton title={"log out"} typebtn={"fill"} />
       </StyledBtn>
     </StyledBurgerMenu>
   );

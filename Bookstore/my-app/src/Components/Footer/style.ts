@@ -5,7 +5,7 @@ export const WrapperFooter = styled("div")`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 32px;
-  border-top: 1px solid #a8a8a8;
+  border-top: 1px solid #e7e7e7;
   color: #a8a8a8;
   font-size: 16px;
   font-style: normal;

@@ -6,6 +6,7 @@ export const WrapperHeader = styled("div")`
   align-items: center;
   padding: 17px 0 5px 0;
   border-bottom: 1px solid #e7e7e7;
+  margin-bottom: 72px;
 `;
 
 export const HeaderTitle = styled("h1")`
