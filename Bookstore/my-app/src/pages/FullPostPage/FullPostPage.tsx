@@ -23,6 +23,7 @@ import SubscriptionBlock from "../../Components/SubscriptionBlock/SubscriptionBl
 import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
 import CircularProgress from "@mui/material/CircularProgress";
 import SocialLinkIcons from "../../Components/SocialLinkIcons/SocialLinkIcons";
+import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
 
 const FullPostPage = () => {
   //   const [moreIcons, setMoreIcons] = useState<boolean>(false);
@@ -60,6 +61,7 @@ const FullPostPage = () => {
 
   return (
     <div className="container">
+      <ArrowBackPage />
       {oneBook ? (
         <div>
           <WrapperArrow>

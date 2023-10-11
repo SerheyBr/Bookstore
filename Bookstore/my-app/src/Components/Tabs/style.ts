@@ -5,11 +5,15 @@ export const StyledTitlesTabs = styled("ul")`
   list-style-type: none;
   border-bottom: 1px solid #e7e7e7;
   margin-bottom: 48px;
-  overflow-y: auto;
+
+  @media (max-width: 400px) {
+    overflow-y: auto;
+  }
   li {
     position: relative;
     cursor: pointer;
     padding: 0 40px 24px 40px;
+
     @media (max-width: 769px) {
       padding: 0 20px 24px 20px;
     }

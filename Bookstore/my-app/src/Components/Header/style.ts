@@ -17,7 +17,7 @@ export const HeaderTitle = styled("h1")`
   margin-right: 5px;
 `;
 
-export const StyledInput = styled("h1")`
+export const StyledInput = styled("div")`
   width: 100%;
   max-width: 542px;
   @media (max-width: 768px) {
