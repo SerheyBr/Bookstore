@@ -4,6 +4,8 @@ import { IBook } from "../../types/types";
 import {
   StyledButton,
   StyledClose,
+  StyledCloseDesk,
+  StyledCloseMobile,
   StyledImg,
   StyledPrice,
   StyledSubtitle,
@@ -19,6 +21,9 @@ const CardInCart = ({ book }: any) => {
         <div>
           <img src={book.image} />
         </div>
+        <StyledCloseMobile>
+          <CloseIcon />
+        </StyledCloseMobile>
       </StyledImg>
       <div>
         <StyledTitle>{book.title}</StyledTitle>
@@ -32,10 +37,9 @@ const CardInCart = ({ book }: any) => {
           <StyledPrice>{book.price}</StyledPrice>
         </WrapperCount>
       </div>
-      {/* <StyledPrice>{book.price}</StyledPrice> */}
-      <StyledClose>
+      <StyledCloseDesk>
         <CloseIcon />
-      </StyledClose>
+      </StyledCloseDesk>
     </WrapperCard>
   );
 };

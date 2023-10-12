@@ -3,9 +3,14 @@ import styled from "styled-components";
 export const WrapperCard = styled("div")`
   display: flex;
   align-items: center;
+  @media (max-width: 580px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
 export const StyledImg = styled("div")`
+  position: relative;
   background-color: #d7e4fd;
   display: flex;
   justify-content: center;
@@ -19,6 +24,12 @@ export const StyledImg = styled("div")`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  @media (max-width: 580px) {
+    width: 80%;
+  }
+  @media (max-width: 400px) {
+    width: 100%;
   }
 `;
 
@@ -84,12 +95,25 @@ export const StyledPrice = styled("p")`
 `;
 
 export const StyledClose = styled(StyledButton)`
-  color: #313037;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 32px;
+  padding: 16px;
+`;
+
+export const StyledCloseDesk = styled(StyledClose)`
   padding: 16px;
   margin-left: auto;
+  @media (max-width: 580px) {
+    display: none;
+  }
+`;
+
+export const StyledCloseMobile = styled(StyledClose)`
+  color: #fff;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #313037;
+  @media (min-width: 580px) {
+    display: none;
+  }
 `;

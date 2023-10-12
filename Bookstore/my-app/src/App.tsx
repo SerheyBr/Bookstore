@@ -6,13 +6,15 @@ import NewReleasesPage from "./pages/NewReleasesPage/NewReleasesPage";
 import FullPostPage from "./pages/FullPostPage/FullPostPage";
 import CartPage from "./pages/CartPage/CartPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import AccountPage from "./pages/AccountPage/AccountPage";
 
 function App() {
   return (
     <div id="app">
       <Layout>
+        <AccountPage />
         {/* <FavoritesPage /> */}
-        <CartPage />
+        {/* <CartPage /> */}
         {/* <FullPostPage /> */}
         {/* <NewReleasesPage></NewReleasesPage> */}
       </Layout>
