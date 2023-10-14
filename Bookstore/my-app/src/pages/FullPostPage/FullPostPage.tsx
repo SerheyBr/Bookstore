@@ -24,45 +24,21 @@ import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
 import CircularProgress from "@mui/material/CircularProgress";
 import SocialLinkIcons from "../../Components/SocialLinkIcons/SocialLinkIcons";
 import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
+import { useParams } from "react-router-dom";
+import { api } from "../../api/api";
 
 const FullPostPage = () => {
-  //   const [moreIcons, setMoreIcons] = useState<boolean>(false);
-  const [books, setBooks] = useState<null | IBook[]>(null);
-
-  const getCards = async () => {
-    return await fetch("https://api.itbook.store/1.0/new", {
-      mode: "cors",
-    });
-  };
+  const [book, setBook] = useState<any>(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    getCards()
-      .then((res) => res.json())
-      .then((data) => setBooks(data.books));
-  }, []);
-
-  //   /запрос одной книги
-  const [oneBook, setOneBook] = useState<any>(null);
-  const getbook = async () => {
-    return await fetch("https://api.itbook.store/1.0/books/9781801812856", {
-      mode: "cors",
-    });
-  };
-
-  useEffect(() => {
-    getbook()
-      .then((res) => res.json())
-      .then((data) => setOneBook(data));
-  }, []);
-
-  //   const handleMoreIcons = () => {
-  //     setMoreIcons((prev) => !prev);
-  //   };
+    api.getSelectedBook(id).then((data) => setBook(data));
+  }, [id]);
 
   return (
     <div className="container">
       <ArrowBackPage />
-      {oneBook ? (
+      {book ? (
         <div>
           <WrapperArrow>
             <button>
@@ -73,13 +49,13 @@ const FullPostPage = () => {
             </button>
           </WrapperArrow>
           <StyledTitle>
-            <Title title={oneBook.title} />
+            <Title title={book.title} />
           </StyledTitle>
           <WrapperFoolCard>
-            <FullCard book={oneBook} />
+            <FullCard book={book} />
           </WrapperFoolCard>
           <WrapperTabs>
-            <Tabs book={oneBook} />
+            <Tabs book={book} />
           </WrapperTabs>
           <WrapperIcons>
             <SocialLinkIcons />

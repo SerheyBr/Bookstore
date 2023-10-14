@@ -31,7 +31,6 @@ const FullCard = ({ book }: any) => {
   const handleBtnLike = () => {
     setLike((prev) => !prev);
   };
-  console.log(book);
   return (
     <WrapperFullCard>
       <ItemFullCard>

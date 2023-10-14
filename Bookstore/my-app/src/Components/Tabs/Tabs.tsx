@@ -8,7 +8,6 @@ const Tabs = ({ book }: any) => {
     setSelectedSection(index);
   };
 
-  //   console.log(book);
   return (
     <div>
       <div>

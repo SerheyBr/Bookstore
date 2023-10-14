@@ -5,20 +5,13 @@ import SubscriptionBlock from "../../Components/SubscriptionBlock/SubscriptionBl
 import { StyledTitle, WrapperCards, WrapperSubscription } from "./style";
 import { IBook } from "../../types/types";
 import CustomPagination from "../../Components/CustomPagination/CustomPagination";
+import { api } from "../../api/api";
 
 const NewReleasesPage = () => {
   const [books, setBooks] = useState<null | IBook[]>(null);
 
-  const getCards = async () => {
-    return await fetch("https://api.itbook.store/1.0/new", {
-      mode: "cors",
-    });
-  };
-
   useEffect(() => {
-    getCards()
-      .then((res) => res.json())
-      .then((data) => setBooks(data.books));
+    api.getNewReleases().then((data) => setBooks(data.books));
   }, []);
 
   return (

@@ -13,18 +13,22 @@ import {
   WrapperCard,
   WrapperCount,
 } from "./style";
+import { Link } from "react-router-dom";
 
 const CardInCart = ({ book }: any) => {
   return (
     <WrapperCard>
-      <StyledImg>
-        <div>
-          <img src={book.image} />
-        </div>
-        <StyledCloseMobile>
-          <CloseIcon />
-        </StyledCloseMobile>
-      </StyledImg>
+      <Link to={`/Book/${book.isbn13}`}>
+        <StyledImg>
+          <div>
+            <img src={book.image} />
+          </div>
+          <StyledCloseMobile>
+            <CloseIcon />
+          </StyledCloseMobile>
+        </StyledImg>
+      </Link>
+
       <div>
         <StyledTitle>{book.title}</StyledTitle>
         <StyledSubtitle>{book.subtitle}</StyledSubtitle>

@@ -12,24 +12,30 @@ import {
   WrapperCard,
 } from "./style";
 import RatingStars from "../RatingStars/RatingStars";
+import { Link } from "react-router-dom";
 
 const CardInFavorites = ({ book }: any) => {
-  console.log(book);
   return (
     <WrapperCard>
-      <StyledImg>
-        <div>
-          <img src={book.image} />
-        </div>
-        <StyledIconFavoriteMobile>
-          <FavoriteOutlinedIcon />
-        </StyledIconFavoriteMobile>
-      </StyledImg>
+      <Link to={`Book/${book.isbn13}`}>
+        <StyledImg>
+          <div>
+            <img src={book.image} />
+          </div>
+          <StyledIconFavoriteMobile>
+            <FavoriteOutlinedIcon />
+          </StyledIconFavoriteMobile>
+        </StyledImg>
+      </Link>
+
       <div>
         <StyledPrice>
           <RatingStars rating={book.rating} />
         </StyledPrice>
-        <StyledTitle>{book.title}</StyledTitle>
+        <Link to={`Book/${book.isbn13}`}>
+          <StyledTitle>{book.title}</StyledTitle>
+        </Link>
+
         <StyledSubtitle>{book.subtitle}</StyledSubtitle>
         <StyledPrice>{book.price}</StyledPrice>
       </div>

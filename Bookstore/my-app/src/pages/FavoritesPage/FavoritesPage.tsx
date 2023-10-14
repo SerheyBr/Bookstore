@@ -30,13 +30,6 @@ const FavoritesPage = () => {
       </WrapperTitle>
 
       <StuledList>
-        {/* {books
-          ? books.map((book) => (
-              <li>
-                <CardInFavorites book={book} />
-              </li>
-            ))
-          : "Корзина пустая"} */}
         {books ? (
           <>
             <li>

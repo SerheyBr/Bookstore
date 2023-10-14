@@ -3,6 +3,7 @@ import { SearchOutlined } from "@mui/icons-material";
 import { StyledSearchInput, WrapperSearchList } from "./style";
 import SearchCardProduct from "../SearchCardProduct/SearchCardProduct";
 import SearchList from "../SearchList/SearchList";
+import { api } from "../../api/api";
 
 interface IBook {
   book: any;
@@ -11,18 +12,9 @@ interface IBook {
 const InputSearch = () => {
   const [books, setBooks] = useState<null | IBook[]>(null);
 
-  const getCards = async () => {
-    return await fetch("https://api.itbook.store/1.0/search/js", {
-      mode: "cors",
-    });
-  };
-
   useEffect(() => {
-    getCards()
-      .then((res) => res.json())
-      .then((data) => setBooks(data.books));
+    api.getSearchBooks("mong").then((data) => setBooks(data.books));
   }, []);
-  console.log(books);
 
   return (
     <WrapperSearchList>

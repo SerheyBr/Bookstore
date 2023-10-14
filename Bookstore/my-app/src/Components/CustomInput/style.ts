@@ -8,7 +8,6 @@ export const StyledCustomInput = styled("label")`
     font-style: normal;
     font-weight: 700;
     line-height: 32px;
-    margin-bottom: 5px;
   }
   input {
     outline: none;

@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { StyledImg, StyledTitle, WrapperCardSearch } from "./style";
+import { api } from "../../api/api";
 
 interface IBook {
   book: any;
@@ -8,16 +9,8 @@ interface IBook {
 const SearchCardProduct: FC<IBook> = ({ book }) => {
   //   const [books, setBooks] = useState<null | IBook[]>(null);
 
-  //   const getCards = async () => {
-  //     return await fetch("https://api.itbook.store/1.0/search/mong", {
-  //       mode: "cors",
-  //     });
-  //   };
-
   //   useEffect(() => {
-  //     getCards()
-  //       .then((res) => res.json())
-  //       .then((data) => setBooks(data.books));
+  //     api.getSearchBooks("mong").then((data) => setBooks(data.books));
   //   }, []);
 
   return (

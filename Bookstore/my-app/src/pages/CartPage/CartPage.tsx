@@ -6,20 +6,13 @@ import { StuledList, WrapperTitle } from "./style";
 import InfoCart from "../../Components/InfoCart/InfoCart";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
+import { api } from "../../api/api";
 
 const CartPage = () => {
   const [books, setBooks] = useState<null | IBook[]>(null);
 
-  const getCards = async () => {
-    return await fetch("https://api.itbook.store/1.0/new", {
-      mode: "cors",
-    });
-  };
-
   useEffect(() => {
-    getCards()
-      .then((res) => res.json())
-      .then((data) => setBooks(data.books));
+    api.getNewReleases().then((data) => setBooks(data.books));
   }, []);
 
   return (
@@ -28,17 +21,20 @@ const CartPage = () => {
       <WrapperTitle>
         <Title title={"Your cart"} />
       </WrapperTitle>
-
-      <StuledList>
-        {books
-          ? books.map((book) => (
-              <li>
+      {books ? (
+        <>
+          <StuledList>
+            {books.map((book) => (
+              <li key={book.isbn13}>
                 <CardInCart book={book} />
               </li>
-            ))
-          : "Корзина пустая"}
-      </StuledList>
-      <InfoCart />
+            ))}
+          </StuledList>
+          <InfoCart />
+        </>
+      ) : (
+        "Корзина пустая"
+      )}
     </div>
   );
 };
