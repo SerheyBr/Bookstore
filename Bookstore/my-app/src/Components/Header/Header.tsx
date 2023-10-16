@@ -4,16 +4,14 @@ import HeaderIcons from "../HeaderIcons/HeaderIcons";
 import { WrapperHeader, HeaderTitle, StyledInput } from "./style";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { ConterActions } from "../../store/actions/counterActions";
 
 const Header = () => {
   //remove
-  const dispatch = useDispatch();
-  //@ts-ignore
-  const count = useSelector((store) => store.count);
+  const { counterDecrement, counterIncrement } = ConterActions();
+  const count = useTypedSelector((state) => state.counter.counter);
 
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
   //remove
   return (
     <div className="container">
@@ -29,7 +27,7 @@ const Header = () => {
         <div>
           <button
             onClick={() => {
-              dispatch({ type: "DECREMENT" });
+              counterDecrement();
             }}
           >
             -
@@ -37,7 +35,7 @@ const Header = () => {
           <p>{count}</p>
           <button
             onClick={() => {
-              dispatch({ type: "INCREMENT" });
+              counterIncrement();
             }}
           >
             +

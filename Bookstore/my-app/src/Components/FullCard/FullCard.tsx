@@ -19,6 +19,10 @@ import {
 } from "./style";
 import CustomButton from "../CustomButton/CustomButton";
 import RatingStars from "../RatingStars/RatingStars";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useDispatch } from "react-redux";
+import { BooksActions } from "../../store/actions/booksActions";
+import { IBook } from "../../types/types";
 
 const FullCard = ({ book }: any) => {
   const [like, setLike] = useState<boolean>(false);
@@ -31,12 +35,35 @@ const FullCard = ({ book }: any) => {
   const handleBtnLike = () => {
     setLike((prev) => !prev);
   };
+
+  const { addToFavoriteBooks, removeFromFavoritesBooks } = BooksActions();
+  const favorite = useTypedSelector((state: any) => state.books.favorites);
+
+  const isFavoriteFunk = (arrFavorites: IBook[], objBook: IBook) => {
+    const result = arrFavorites.find(
+      (el: IBook) => el.isbn13 === objBook.isbn13
+    );
+    return result;
+  };
+
   return (
     <WrapperFullCard>
       <ItemFullCard>
         <StyledImg>
           <StyledBtnLick onClick={handleBtnLike}>
-            {like ? <FavoriteRoundedIcon /> : <FavoriteBorderTwoToneIcon />}
+            {isFavoriteFunk(favorite, book) ? (
+              <FavoriteRoundedIcon
+                onClick={() => {
+                  removeFromFavoritesBooks(book);
+                }}
+              />
+            ) : (
+              <FavoriteBorderTwoToneIcon
+                onClick={() => {
+                  addToFavoriteBooks(book);
+                }}
+              />
+            )}
           </StyledBtnLick>
           <div>
             <img src={book.image} />

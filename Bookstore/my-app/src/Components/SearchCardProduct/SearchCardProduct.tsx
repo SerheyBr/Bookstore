@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { StyledImg, StyledTitle, WrapperCardSearch } from "./style";
 import { api } from "../../api/api";
+import { Link } from "react-router-dom";
 
 interface IBook {
   book: any;
@@ -14,14 +15,16 @@ const SearchCardProduct: FC<IBook> = ({ book }) => {
   //   }, []);
 
   return (
-    <WrapperCardSearch>
-      <StyledImg>
-        <div>
-          <img src={book.image} />
-        </div>
-      </StyledImg>
-      <StyledTitle>{book.title}</StyledTitle>
-    </WrapperCardSearch>
+    <Link to={`/Book/${book.isbn13}`}>
+      <WrapperCardSearch>
+        <StyledImg>
+          <div>
+            <img src={book.image} />
+          </div>
+        </StyledImg>
+        <StyledTitle>{book.title}</StyledTitle>
+      </WrapperCardSearch>
+    </Link>
   );
 };
 

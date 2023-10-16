@@ -1,33 +1,14 @@
-enum counterType {
-  INCREMENT = "INCREMENT",
-  DECREMENT = "DECREMENT",
-}
-
-interface ICountState {
-  count: number;
-}
-
-interface IIncrementCounterAction {
-  type: counterType.INCREMENT;
-  payload: number;
-}
-
-interface IDecrementCounterAction {
-  type: counterType.DECREMENT;
-  payload: number;
-}
-
-type CounterActions = IIncrementCounterAction | IDecrementCounterAction;
+import { typeCounterActions, ICountState, counterType } from "../types/counter";
 
 const defaultState: ICountState = {
-  count: 0,
+  counter: 0,
 };
-export const reduser = (state = defaultState, action: CounterActions) => {
+export const reduser = (state = defaultState, action: typeCounterActions) => {
   switch (action.type) {
     case counterType.INCREMENT:
-      return { ...state, count: state.count + 1 };
+      return { ...state, counter: state.counter + 1 };
     case counterType.DECREMENT:
-      return { ...state, count: state.count - 1 };
+      return { ...state, counter: state.counter - 1 };
     default:
       return state;
   }

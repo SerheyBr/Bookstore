@@ -6,48 +6,26 @@ import Title from "../../Components/Title/Title";
 import CardInFavorites from "../../Components/CardInFavorites/CardInFavorites";
 import SubscriptionBlock from "../../Components/SubscriptionBlock/SubscriptionBlock";
 import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const FavoritesPage = () => {
-  const [books, setBooks] = useState<null | IBook[]>(null);
-
-  const getCards = async () => {
-    return await fetch("https://api.itbook.store/1.0/books/9781782166283", {
-      mode: "cors",
-    });
-  };
-
-  useEffect(() => {
-    getCards()
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
-  }, []);
+  const favoritesBooks = useTypedSelector((state) => state.books.favorites);
 
   return (
     <div className="container">
       <ArrowBackPage />
       <WrapperTitle>
-        <Title title={"Your cart"} />
+        <Title title={"Your favorites"} />
       </WrapperTitle>
 
       <StuledList>
-        {books ? (
-          <>
-            <li>
-              <CardInFavorites book={books} />
-            </li>
-            <li>
-              <CardInFavorites book={books} />
-            </li>
-            <li>
-              <CardInFavorites book={books} />
-            </li>
-            <li>
-              <CardInFavorites book={books} />
-            </li>
-          </>
-        ) : (
-          "В избранном нет книг"
-        )}
+        {favoritesBooks.length
+          ? favoritesBooks.map((el) => (
+              <li key={el.isbn13}>
+                <CardInFavorites book={el} />
+              </li>
+            ))
+          : "В избранном нет книг"}
       </StuledList>
       <ProductCarousel title={"Popular Books"} />
     </div>

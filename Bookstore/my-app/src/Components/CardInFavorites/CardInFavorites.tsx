@@ -13,16 +13,23 @@ import {
 } from "./style";
 import RatingStars from "../RatingStars/RatingStars";
 import { Link } from "react-router-dom";
+import { BooksActions } from "../../store/actions/booksActions";
 
 const CardInFavorites = ({ book }: any) => {
+  const { removeFromFavoritesBooks } = BooksActions();
+
   return (
     <WrapperCard>
-      <Link to={`Book/${book.isbn13}`}>
+      <Link to={`/Book/${book.isbn13}`}>
         <StyledImg>
           <div>
             <img src={book.image} />
           </div>
-          <StyledIconFavoriteMobile>
+          <StyledIconFavoriteMobile
+            onClick={() => {
+              removeFromFavoritesBooks(book);
+            }}
+          >
             <FavoriteOutlinedIcon />
           </StyledIconFavoriteMobile>
         </StyledImg>
@@ -32,7 +39,7 @@ const CardInFavorites = ({ book }: any) => {
         <StyledPrice>
           <RatingStars rating={book.rating} />
         </StyledPrice>
-        <Link to={`Book/${book.isbn13}`}>
+        <Link to={`/Book/${book.isbn13}`}>
           <StyledTitle>{book.title}</StyledTitle>
         </Link>
 
@@ -40,7 +47,11 @@ const CardInFavorites = ({ book }: any) => {
         <StyledPrice>{book.price}</StyledPrice>
       </div>
 
-      <StyledIconFavoriteDesk>
+      <StyledIconFavoriteDesk
+        onClick={() => {
+          removeFromFavoritesBooks(book);
+        }}
+      >
         <FavoriteOutlinedIcon />
       </StyledIconFavoriteDesk>
     </WrapperCard>
