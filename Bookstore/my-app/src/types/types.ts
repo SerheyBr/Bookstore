@@ -5,6 +5,7 @@ export interface IBook {
   price: string;
   image: string;
   url: string;
+  inCart?: number;
 }
 
 export interface ISelectorBook {

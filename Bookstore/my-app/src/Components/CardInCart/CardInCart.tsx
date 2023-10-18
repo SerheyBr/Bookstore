@@ -10,12 +10,26 @@ import {
   StyledPrice,
   StyledSubtitle,
   StyledTitle,
+  WrapperBody,
   WrapperCard,
   WrapperCount,
 } from "./style";
 import { Link } from "react-router-dom";
+import { BooksActions } from "../../store/actions/booksActions";
+import { priceFormatting } from "../../utilits/priceFormatting";
 
 const CardInCart = ({ book }: any) => {
+  const {
+    addMoreToCartBooks,
+    removeOneBookFromCartAction,
+    removeCollectionBooksFromCartAction,
+  } = BooksActions();
+
+  const priceCollectionBooks = (price: string, quantity: number): string => {
+    let result = priceFormatting(price) * quantity;
+    return result.toFixed(2);
+  };
+
   return (
     <WrapperCard>
       <Link to={`/Book/${book.isbn13}`}>
@@ -29,19 +43,39 @@ const CardInCart = ({ book }: any) => {
         </StyledImg>
       </Link>
 
-      <div>
+      <WrapperBody>
         <StyledTitle>{book.title}</StyledTitle>
         <StyledSubtitle>{book.subtitle}</StyledSubtitle>
         <WrapperCount>
           <WrapperCount>
-            <StyledButton>-</StyledButton>
-            <p>23</p>
-            <StyledButton>+</StyledButton>
+            <StyledButton
+              disabled={book.inCart >= 2 ? false : true}
+              onClick={() => {
+                removeOneBookFromCartAction(book);
+              }}
+            >
+              -
+            </StyledButton>
+            <p>{book.inCart}</p>
+            <StyledButton
+              onClick={() => {
+                addMoreToCartBooks(book);
+              }}
+            >
+              +
+            </StyledButton>
           </WrapperCount>
-          <StyledPrice>{book.price}</StyledPrice>
+          <StyledPrice>{`$${priceCollectionBooks(
+            book.price,
+            book.inCart
+          )}`}</StyledPrice>
         </WrapperCount>
-      </div>
-      <StyledCloseDesk>
+      </WrapperBody>
+      <StyledCloseDesk
+        onClick={() => {
+          removeCollectionBooksFromCartAction(book);
+        }}
+      >
         <CloseIcon />
       </StyledCloseDesk>
     </WrapperCard>

@@ -32,7 +32,7 @@ const FullPostPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    api.getSelectedBook(id).then((data) => setBook(data));
+    api.getSelectedBook(id).then((data) => setBook({ ...data, inCart: 0 }));
   }, [id]);
 
   return (

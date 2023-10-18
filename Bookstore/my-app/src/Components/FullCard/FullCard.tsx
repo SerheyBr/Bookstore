@@ -23,35 +23,34 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useDispatch } from "react-redux";
 import { BooksActions } from "../../store/actions/booksActions";
 import { IBook } from "../../types/types";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const FullCard = ({ book }: any) => {
-  const [like, setLike] = useState<boolean>(false);
   const [openMore, setOpenMore] = useState<boolean>(false);
-
   const handleMore = () => {
     setOpenMore((prev) => !prev);
   };
 
-  const handleBtnLike = () => {
-    setLike((prev) => !prev);
-  };
-
-  const { addToFavoriteBooks, removeFromFavoritesBooks } = BooksActions();
-  const favorite = useTypedSelector((state: any) => state.books.favorites);
-
-  const isFavoriteFunk = (arrFavorites: IBook[], objBook: IBook) => {
-    const result = arrFavorites.find(
-      (el: IBook) => el.isbn13 === objBook.isbn13
-    );
-    return result;
+  const {
+    addToFavoriteBooks,
+    removeFromFavoritesBooks,
+    addToCartBooks,
+    addMoreToCartBooks,
+  } = BooksActions();
+  const favorite = useTypedSelector((state) => state.books.favorites);
+  const cart = useTypedSelector((state) => state.books.cart);
+  //   console.log(cart);
+  const selectedBookFromArray = (array: IBook[], selectedBook: IBook) => {
+    const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
+    return book;
   };
 
   return (
     <WrapperFullCard>
       <ItemFullCard>
         <StyledImg>
-          <StyledBtnLick onClick={handleBtnLike}>
-            {isFavoriteFunk(favorite, book) ? (
+          <StyledBtnLick>
+            {selectedBookFromArray(favorite, book) ? (
               <FavoriteRoundedIcon
                 onClick={() => {
                   removeFromFavoritesBooks(book);
@@ -126,9 +125,31 @@ const FullCard = ({ book }: any) => {
                 </div>
               )}
             </StyledBtnMore>
-            <StyledBtnAdd>
-              <CustomButton title={"add to cart"} typebtn={"fill"} />
-            </StyledBtnAdd>
+            {selectedBookFromArray(cart, book) ? (
+              <StyledBtnAdd>
+                <div>
+                  <ShoppingCartOutlinedIcon />
+                  <p>{selectedBookFromArray(cart, book)?.inCart}</p>
+                </div>
+                <CustomButton
+                  title={"add more to cart"}
+                  typebtn={"fill"}
+                  onClick={() => {
+                    addMoreToCartBooks(book);
+                  }}
+                />
+              </StyledBtnAdd>
+            ) : (
+              <StyledBtnAdd>
+                <CustomButton
+                  title={"add to cart"}
+                  typebtn={"fill"}
+                  onClick={() => {
+                    addToCartBooks(book);
+                  }}
+                />
+              </StyledBtnAdd>
+            )}
             <StyledBtnPreview>
               <CustomButton title={"Preview book"} typebtn={"ghost"} />
             </StyledBtnPreview>

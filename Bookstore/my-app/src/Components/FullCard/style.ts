@@ -123,9 +123,36 @@ export const StyledBtnMore = styled("button")`
 `;
 
 export const StyledBtnAdd = styled("div")`
+  position: relative;
   height: 56px;
   width: 100%;
   margin-bottom: 40px;
+  div {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3d923d;
+    color: #fff;
+  }
+  p {
+    position: absolute;
+    bottom: -2px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: #3d923d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
 `;
 
 export const StyledBtnPreview = styled("div")`

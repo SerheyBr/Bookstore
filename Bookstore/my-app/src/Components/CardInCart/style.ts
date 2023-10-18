@@ -33,6 +33,10 @@ export const StyledImg = styled("div")`
   }
 `;
 
+export const WrapperBody = styled("div")`
+  flex: 1 1 auto;
+`;
+
 export const StyledTitle = styled("h3")`
   color: #313037;
   font-family: "Bebas Neue", sans-serif;
@@ -63,7 +67,11 @@ export const WrapperCount = styled("div")`
     font-style: normal;
     font-weight: 700;
     line-height: 32px;
-    padding: 16px;
+    padding: 0 16px;
+  }
+  @media (max-width: 500px) {
+    /* justify-content: center;
+    flex-wrap: wrap; */
   }
 `;
 
@@ -81,6 +89,9 @@ export const StyledButton = styled("button")`
   }
   &:active {
     background-color: #c7bbbba3;
+  }
+  &:disabled {
+    background-color: #00000036;
   }
 `;
 

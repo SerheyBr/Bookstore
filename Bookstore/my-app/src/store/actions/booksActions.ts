@@ -23,5 +23,16 @@ export const BooksActions = () => {
       dispatch({ type: booksType.ADD_TO_FAVORITES, payload: payload }),
     removeFromFavoritesBooks: (payload: IBook) =>
       dispatch({ type: booksType.REMOVE_FROM_FAVORITES, payload: payload }),
+    addToCartBooks: (payload: IBook) =>
+      dispatch({ type: booksType.ADD_TO_CART, payload: payload }),
+    addMoreToCartBooks: (payload: IBook) =>
+      dispatch({ type: booksType.ADD_MORE_TO_CART, payload: payload }),
+    removeOneBookFromCartAction: (payload: IBook) =>
+      dispatch({ type: booksType.REMOVE_ONE_BOOK_FROM_CART, payload: payload }),
+    removeCollectionBooksFromCartAction: (payload: IBook) =>
+      dispatch({
+        type: booksType.REMOVE_COLLECTION_BOOKS_FROM_CART,
+        payload: payload,
+      }),
   };
 };

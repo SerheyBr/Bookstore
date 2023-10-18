@@ -7,13 +7,10 @@ import InfoCart from "../../Components/InfoCart/InfoCart";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
 import { api } from "../../api/api";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const CartPage = () => {
-  const [books, setBooks] = useState<null | IBook[]>(null);
-
-  useEffect(() => {
-    api.getNewReleases().then((data) => setBooks(data.books));
-  }, []);
+  const cartBooks = useTypedSelector((state) => state.books.cart);
 
   return (
     <div className="container">
@@ -21,12 +18,12 @@ const CartPage = () => {
       <WrapperTitle>
         <Title title={"Your cart"} />
       </WrapperTitle>
-      {books ? (
+      {cartBooks.length ? (
         <>
           <StuledList>
-            {books.map((book) => (
-              <li key={book.isbn13}>
-                <CardInCart book={book} />
+            {cartBooks.map((cartBooks) => (
+              <li key={cartBooks.isbn13}>
+                <CardInCart book={cartBooks} />
               </li>
             ))}
           </StuledList>
