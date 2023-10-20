@@ -127,6 +127,7 @@ export const StyledBtnAdd = styled("div")`
   height: 56px;
   width: 100%;
   margin-bottom: 40px;
+  z-index: 1;
   div {
     position: absolute;
     top: -15px;

@@ -1,4 +1,3 @@
-import { Favorite } from "@mui/icons-material";
 import { typeBooksActions, IBooksState, booksType } from "../types/books";
 
 const defaultState: IBooksState = {

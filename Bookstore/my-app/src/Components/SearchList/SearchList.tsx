@@ -1,14 +1,20 @@
 import React, { FC } from "react";
 import SearchCardProduct from "../SearchCardProduct/SearchCardProduct";
 import { WrapperSearchList } from "./style";
+import { SearchActions } from "../../store/actions/searchActions";
 
 interface IBook {
   books: any;
 }
 
 const SearchList: FC<IBook> = ({ books }) => {
+  const { showListResultSearch } = SearchActions();
   return (
-    <WrapperSearchList>
+    <WrapperSearchList
+      onClick={(event) => {
+        showListResultSearch(false);
+      }}
+    >
       {books
         ? books.map((el: any) => (
             <li key={el.isbn13}>

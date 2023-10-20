@@ -39,7 +39,6 @@ const FullCard = ({ book }: any) => {
   } = BooksActions();
   const favorite = useTypedSelector((state) => state.books.favorites);
   const cart = useTypedSelector((state) => state.books.cart);
-  //   console.log(cart);
   const selectedBookFromArray = (array: IBook[], selectedBook: IBook) => {
     const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
     return book;

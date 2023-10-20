@@ -24,9 +24,7 @@ const InfoCart = () => {
     const result = sumTotal(cart) + vat(18, sumTotal(cart));
     return result.toFixed(2);
   };
-  console.log(sumTotal(cart));
-  console.log(vat(18, sumTotal(cart)));
-  console.log(total());
+
   return (
     <WrapperInfoCart>
       <ul>

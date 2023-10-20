@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { StyledImg, StyledTitle, WrapperCardSearch } from "./style";
 import { api } from "../../api/api";
 import { Link } from "react-router-dom";
+import { SearchActions } from "../../store/actions/searchActions";
 
 interface IBook {
   book: any;
@@ -13,10 +14,10 @@ const SearchCardProduct: FC<IBook> = ({ book }) => {
   //   useEffect(() => {
   //     api.getSearchBooks("mong").then((data) => setBooks(data.books));
   //   }, []);
-
+  const { showListResultSearch } = SearchActions();
   return (
     <Link to={`/Book/${book.isbn13}`}>
-      <WrapperCardSearch>
+      <WrapperCardSearch onClick={() => showListResultSearch(false)}>
         <StyledImg>
           <div>
             <img src={book.image} />
