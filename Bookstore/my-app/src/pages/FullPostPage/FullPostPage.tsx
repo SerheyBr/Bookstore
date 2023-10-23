@@ -40,14 +40,6 @@ const FullPostPage = () => {
       <ArrowBackPage />
       {book ? (
         <div>
-          {/* <WrapperArrow>
-            <button>
-              <KeyboardBackspaceIcon />
-            </button>
-            <button>
-              <EastIcon />
-            </button>
-          </WrapperArrow> */}
           <StyledTitle>
             <Title title={book.title} />
           </StyledTitle>

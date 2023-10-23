@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FavoriteBorderTwoToneIcon from "@mui/icons-material/FavoriteBorderTwoTone";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -19,14 +19,21 @@ import {
 } from "./style";
 import CustomButton from "../CustomButton/CustomButton";
 import RatingStars from "../RatingStars/RatingStars";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useDispatch } from "react-redux";
 import { BooksActions } from "../../store/actions/booksActions";
 import { IBook } from "../../types/types";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import PreviewBook from "../PreviewBook/PreviewBook";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { PrevievBookActions } from "../../store/actions/previewBookAction";
 
 const FullCard = ({ book }: any) => {
+  const isShowPrewiev = useTypedSelector(
+    (state) => state.previewBook.isShowPreviewBook
+  );
+  const { showPreviewBook } = PrevievBookActions();
   const [openMore, setOpenMore] = useState<boolean>(false);
+
   const handleMore = () => {
     setOpenMore((prev) => !prev);
   };
@@ -43,6 +50,12 @@ const FullCard = ({ book }: any) => {
     const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
     return book;
   };
+
+  useEffect(() => {
+    isShowPrewiev
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "visible");
+  }, [isShowPrewiev]);
 
   return (
     <WrapperFullCard>
@@ -150,11 +163,16 @@ const FullCard = ({ book }: any) => {
               </StyledBtnAdd>
             )}
             <StyledBtnPreview>
-              <CustomButton title={"Preview book"} typebtn={"ghost"} />
+              <CustomButton
+                title={"Preview book"}
+                typebtn={"ghost"}
+                onClick={() => showPreviewBook(true)}
+              />
             </StyledBtnPreview>
           </div>
         </WrapperBookInfo>
       </ItemFullCard>
+      {isShowPrewiev ? <PreviewBook bookImg={book.image} /> : ""}
     </WrapperFullCard>
   );
 };

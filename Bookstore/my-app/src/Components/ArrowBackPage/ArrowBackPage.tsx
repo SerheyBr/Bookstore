@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const ArrowBackPage = () => {
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
+  const goHome = () => {
+    navigate("/");
   };
 
   return (
-    <StyledArrowBackPage onClick={goBack}>
+    <StyledArrowBackPage onClick={goHome}>
       <KeyboardBackspaceIcon fontSize="large" />
     </StyledArrowBackPage>
   );

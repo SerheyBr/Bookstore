@@ -6,7 +6,6 @@ import axios from "axios";
 import { IBook } from "../../types/types";
 
 export const getSearchResult = (search: string) => {
-  console.log(search);
   return async (dispatch: Dispatch<typeSearchActions>) => {
     try {
       const res: any = await api

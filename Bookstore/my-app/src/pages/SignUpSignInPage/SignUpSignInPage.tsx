@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-import {
-  StyledBtn,
-  StyledText,
-  WrapperBody,
-  WrapperContainer,
-  WrapperInput,
-} from "./style";
+import { WrapperContainer } from "./style";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
 
 const SignUpSignInPage = () => {
   const [indexTab, setIndexTab] = useState(1);
@@ -26,62 +22,7 @@ const SignUpSignInPage = () => {
             <button onClick={() => handlerToggleTabs(2)}>Sign up</button>
           </li>
         </ul>
-        {indexTab === 1 ? (
-          <WrapperBody>
-            <WrapperInput>
-              <CustomInput
-                title={"Email"}
-                type={"text"}
-                placeholder={"Your email"}
-              />
-            </WrapperInput>
-            <WrapperInput>
-              <CustomInput
-                title={"Password"}
-                type={"password"}
-                placeholder={"Your password"}
-              />
-            </WrapperInput>
-            <StyledText>Forgot password ?</StyledText>
-            <StyledBtn>
-              <CustomButton title={"sign in"} typebtn={"fill"} />
-            </StyledBtn>
-          </WrapperBody>
-        ) : (
-          <WrapperBody>
-            <WrapperInput>
-              <CustomInput
-                title={"Name"}
-                type={"text"}
-                placeholder={"Your name"}
-              />
-            </WrapperInput>
-            <WrapperInput>
-              <CustomInput
-                title={"Email"}
-                type={"text"}
-                placeholder={"Your email"}
-              />
-            </WrapperInput>
-            <WrapperInput>
-              <CustomInput
-                title={"Password"}
-                type={"Password"}
-                placeholder={"Your password"}
-              />
-            </WrapperInput>
-            <WrapperInput>
-              <CustomInput
-                title={"Confirm password"}
-                type={"password"}
-                placeholder={"Your confirm password"}
-              />
-            </WrapperInput>
-            <StyledBtn>
-              <CustomButton title={"sign up"} typebtn={"fill"} />
-            </StyledBtn>
-          </WrapperBody>
-        )}
+        {indexTab === 1 ? <SignIn /> : <SignUp />}
       </WrapperContainer>
     </div>
   );

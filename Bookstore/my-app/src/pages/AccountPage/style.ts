@@ -87,3 +87,22 @@ export const StuledBtn = styled("div")`
     margin-left: 0;
   }
 `;
+
+export const StuledBtnLogout = styled(StuledBtn)`
+  margin: 0;
+  margin-right: auto;
+  button {
+    background-color: #ff000080;
+    &:hover {
+      background-color: #ff0303ad;
+    }
+    &:active {
+      background-color: #392a2ad4;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    margin-left: 0;
+  }
+`;

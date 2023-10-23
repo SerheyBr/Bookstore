@@ -4,6 +4,7 @@ import Title from "../../Components/Title/Title";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import {
   StuledBtn,
+  StuledBtnLogout,
   StyledInput,
   StyledTitle,
   WrapperBtns,
@@ -13,8 +14,19 @@ import {
   WrapperUserInfo,
 } from "./style";
 import CustomButton from "../../Components/CustomButton/CustomButton";
+import { UserActions } from "../../store/actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const AccountPage = () => {
+  const navigation = useNavigate();
+  const { userLogout } = UserActions();
+  const handlerLogoutBtn = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    userLogout();
+    navigation("/SignUpSignIn");
+  };
+
   return (
     <div className="container">
       <ArrowBackPage />
@@ -69,6 +81,15 @@ const AccountPage = () => {
         </WrapperPassword>
       </WrapperContent>
       <WrapperBtns>
+        <StuledBtnLogout>
+          <CustomButton
+            title={"logout"}
+            typebtn={"fill"}
+            onClick={() => {
+              handlerLogoutBtn();
+            }}
+          />
+        </StuledBtnLogout>
         <StuledBtn>
           <CustomButton title={"Save changes"} typebtn={"fill"} />
         </StuledBtn>

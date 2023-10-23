@@ -24,7 +24,6 @@ const InputSearch = () => {
   const isShowList = useTypedSelector((steat) => steat.search.showList);
   const searchResult = useTypedSelector((state) => state.search.searchResult);
 
-  console.log(searchResult);
   const dispatch = useDispatch();
   useEffect(() => {
     // @ts-ignore
@@ -32,7 +31,6 @@ const InputSearch = () => {
 
     //  api.getSearchBooks("mong").then((data) => setBooks(data.books));
   }, [value]);
-  console.log(value);
 
   return (
     <WrapperSearchList>
@@ -43,7 +41,6 @@ const InputSearch = () => {
           value={value}
           onClick={(event) => {
             showListResultSearch(true);
-            console.log("asd");
           }}
           onChange={(event) => {
             setValue(event.target.value);
