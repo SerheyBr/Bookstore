@@ -130,8 +130,11 @@ function App() {
             }
           ></Route>
           <Route path="/activate/:uid/:token" element={<SuccessPage />}></Route>
-          <Route path="/NewPassword" element={<NewPasswordPage />}></Route>
-          <Route path="/ResetPassword" element={<ResetPasswordPage />}></Route>
+          <Route
+            path="/password/reset/confirm/:uidReset/:tokenReset"
+            element={<NewPasswordPage />}
+          ></Route>
+          <Route path="/password/reset" element={<ResetPasswordPage />}></Route>
           <Route path="/SignUpSignIn" element={<SignUpSignInPage />}></Route>
           <Route path="/Book/:id" element={<FullPostPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>

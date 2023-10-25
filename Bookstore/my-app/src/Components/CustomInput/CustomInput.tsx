@@ -7,6 +7,7 @@ interface ICustomInputProps {
   placeholder: string;
   value?: string;
   onChange?: any;
+  dislabel?: boolean;
 }
 
 const CustomInput: FC<ICustomInputProps> = ({
@@ -15,6 +16,7 @@ const CustomInput: FC<ICustomInputProps> = ({
   placeholder,
   value,
   onChange,
+  dislabel = false,
 }) => {
   return (
     <StyledCustomInput>
@@ -24,6 +26,7 @@ const CustomInput: FC<ICustomInputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={dislabel}
       />
     </StyledCustomInput>
   );

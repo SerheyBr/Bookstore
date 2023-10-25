@@ -9,6 +9,7 @@ import {
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { api } from "../../api/api";
 
 const SuccessPage = () => {
   const navigation = useNavigate();
@@ -20,16 +21,17 @@ const SuccessPage = () => {
   };
 
   const postActivation = async (token: any) => {
-    axios({
-      method: "post",
-      url: "https://studapi.teachmeskills.by/auth/users/activation/",
-      data: token,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    console.log("актевировали новый аккаунт");
+    api.activationUser(activationToken);
+    //  axios({
+    //    method: "post",
+    //    url: "https://studapi.teachmeskills.by/auth/users/activation/",
+    //    data: token,
+    //    headers: {
+    //      Accept: "application/json",
+    //      "Content-Type": "application/json",
+    //    },
+    //  });
+    //  console.log("актевировали новый аккаунт");
     //  const res = fetch(
     //    "https://studapi.teachmeskills.by/auth/users/activation/",
     //    {

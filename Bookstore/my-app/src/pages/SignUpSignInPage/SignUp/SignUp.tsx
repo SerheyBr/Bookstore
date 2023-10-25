@@ -40,15 +40,17 @@ const SignUp = () => {
   };
 
   const postRequest = async (data: any) => {
-    axios({
-      method: "post",
-      url: "https://studapi.teachmeskills.by/auth/users/",
-      data: data,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
+    //  axios({
+    //    method: "post",
+    //    url: "https://studapi.teachmeskills.by/auth/users/",
+    //    data: data,
+    //    headers: {
+    //      Accept: "application/json",
+    //      "Content-Type": "application/json",
+    //    },
+    //  })
+    api
+      .authUser(data)
       .catch((error) => {
         if (error.response) {
           setSuccessMessage(false);

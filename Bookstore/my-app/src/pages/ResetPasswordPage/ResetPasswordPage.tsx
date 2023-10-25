@@ -9,25 +9,47 @@ import {
 } from "./style";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import axios from "axios";
+import { api } from "../../api/api";
+
+// const resetPassword = async (email: any) => {
+//   return await axios({
+//     method: "post",
+//     url: "https://studapi.teachmeskills.by/auth/users/reset_password/",
+//     data: { email: email },
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//   });
+// };
 
 const ResetPasswordPage = () => {
-  const [test, setTest] = useState(false);
+  //   const user = useTypedSelector((state) => state.user);
   const [email, setEmail] = useState("");
+  const [showMessage, setshowMessage] = useState(false);
+  //   const [email, setEmail] = useState("");
 
-  const handlerTest = () => {
-    setTest((prev) => !prev);
+  //   const resetPasswordData = () => {
+  //     resetPassword(user.email).then((data) => console.log(data));
+  //   };
+
+  const handlerResetPasswordBtn = () => {
+    setshowMessage(true);
+    api.resetPassword(email).then((data) => console.log(data));
   };
 
-  const handleInputValue = (event: any) => {
-    setEmail(event.target.value);
-  };
+  //   const handleInputValue = (event: any) => {
+  //     setEmail(event.target.value);
+  //   };
 
   return (
     <div className="container">
       <WrapperContainer>
         <WrapperBody>
           <StyledTitle>reset password</StyledTitle>
-          {test ? (
+          {showMessage ? (
             <StyledMessage>
               You will receive an email <span>{email}</span> with a link to
               reset your password!
@@ -40,14 +62,12 @@ const ResetPasswordPage = () => {
               title={"Email"}
               type={"text"}
               placeholder={"Your email"}
-              onChange={(event: any) => {
-                handleInputValue(event);
-              }}
+              onChange={(event: any) => setEmail(event.target.value)}
             />
           </WrapperInput>
           <StyledBtn>
             <CustomButton
-              onClick={handlerTest}
+              onClick={handlerResetPasswordBtn}
               title={"Reset"}
               typebtn={"fill"}
             />

@@ -12,6 +12,7 @@ import axios from "axios";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { UserActions } from "../../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../../api/api";
 
 const SignIn = () => {
   const navigation = useNavigate();
@@ -23,44 +24,39 @@ const SignIn = () => {
   };
   const [userData, setUserData] = useState(userInfo);
 
-  const createJwtToken = async (user: any) => {
-    console.log("забрали токены");
-    return await axios({
-      method: "post",
-      url: "https://studapi.teachmeskills.by/auth/jwt/create/",
-      data: user,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-  };
+  //   const createJwtToken = async (user: any) => {
+  //     console.log("забрали токены");
+  //     return await axios({
+  //       method: "post",
+  //       url: "https://studapi.teachmeskills.by/auth/jwt/create/",
+  //       data: user,
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //   };
 
-  const retrieveUser = async (token: any) => {
-    console.log("передаем access токен и получаем пользователя");
-    return await axios({
-      method: "get",
-      url: "https://studapi.teachmeskills.by/auth/users/me/",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  };
+  //   const retrieveUser = async (token: any) => {
+  //     console.log("передаем access токен и получаем пользователя");
+  //     return await axios({
+  //       method: "get",
+  //       url: "https://studapi.teachmeskills.by/auth/users/me/",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //   };
 
   const loginUser = () => {
-    createJwtToken(userData).then((res) => {
+    api.createJwtToken(userData).then((res) => {
       if (res.data) {
         localStorage.setItem("access_token", JSON.stringify(res.data.access));
         localStorage.setItem("refresh_token", JSON.stringify(res.data.refresh));
-        console.log("добавили токены в локал сторэдж");
       }
 
-      retrieveUser(res.data.access).then((res) => {
-        console.log("проверяем получили ли мы пользователя");
+      api.retrieveUser(res.data.access).then((res) => {
         if (res.data.id) {
-          console.log(
-            "если пользователь получен, то добовляем его в переменную user и уходим на главную страницу"
-          );
           userAuth(res.data);
           navigation("/");
         }
@@ -128,7 +124,13 @@ const SignIn = () => {
           onChange={(event: any) => handlerValueInput(event, "password")}
         />
       </WrapperInput>
-      <StyledText>Forgot password ?</StyledText>
+      <StyledText
+        onClick={() => {
+          navigation("/password/reset");
+        }}
+      >
+        Forgot password ?
+      </StyledText>
       <StyledBtn>
         <CustomButton
           title={"sign in"}

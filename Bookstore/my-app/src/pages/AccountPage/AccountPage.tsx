@@ -16,8 +16,13 @@ import {
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { UserActions } from "../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const AccountPage = () => {
+  const { uidReset, tokenReset } = useParams();
+  const user = useTypedSelector((state) => state.user);
   const navigation = useNavigate();
   const { userLogout } = UserActions();
   const handlerLogoutBtn = () => {
@@ -26,6 +31,37 @@ const AccountPage = () => {
     userLogout();
     navigation("/SignUpSignIn");
   };
+
+  console.log(uidReset);
+  console.log(tokenReset);
+
+  //   const resetPassword = async (email: any) => {
+  //     return await axios({
+  //       method: "post",
+  //       url: "https://studapi.teachmeskills.by/auth/users/reset_password/",
+  //       data: { email: email },
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //   };
+
+  //   const resetPasswordConfirm = async (email: any) => {
+  //     return await axios({
+  //       method: "post",
+  //       url: "/auth/users/reset_password_confirm/",
+  //       data: { email: email },
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //   };
+
+  //   const resetPasswordData = () => {
+  //     resetPassword(user.email).then((data) => console.log(data));
+  //   };
 
   return (
     <div className="container">
@@ -38,18 +74,26 @@ const AccountPage = () => {
           <h5>Profile</h5>
           <div>
             <StyledInput>
-              <CustomInput title={"Name"} type={"text"} placeholder={"Name"} />
+              <CustomInput
+                title={"Name"}
+                type={"text"}
+                value={user.username}
+                placeholder={"Name"}
+                dislabel={true}
+              />
             </StyledInput>
             <StyledInput>
               <CustomInput
                 title={"Email"}
                 type={"text"}
+                value={user.email}
                 placeholder={"Email"}
+                dislabel={true}
               />
             </StyledInput>
           </div>
         </WrapperUserInfo>
-        <WrapperPassword>
+        {/* <WrapperPassword>
           <h5>Password</h5>
           <div>
             <StyledInput>
@@ -59,7 +103,13 @@ const AccountPage = () => {
                 placeholder={"Password"}
               />
             </StyledInput>
-
+            <button
+              onClick={() => {
+                navigation("/password/reset");
+              }}
+            >
+              Reset password
+            </button>
             <WrapperNewPassword>
               <StyledInput>
                 <CustomInput
@@ -78,7 +128,7 @@ const AccountPage = () => {
               </StyledInput>
             </WrapperNewPassword>
           </div>
-        </WrapperPassword>
+        </WrapperPassword> */}
       </WrapperContent>
       <WrapperBtns>
         <StuledBtnLogout>
@@ -90,12 +140,18 @@ const AccountPage = () => {
             }}
           />
         </StuledBtnLogout>
-        <StuledBtn>
-          <CustomButton title={"Save changes"} typebtn={"fill"} />
-        </StuledBtn>
-        <StuledBtn>
+        {/* <StuledBtn>
+          <CustomButton
+            title={"Save changes"}
+            typebtn={"fill"}
+            onClick={() => {
+              resetPasswordData();
+            }}
+          />
+        </StuledBtn> */}
+        {/* <StuledBtn>
           <CustomButton title={"cancel"} typebtn={"fill"} />
-        </StuledBtn>
+        </StuledBtn> */}
       </WrapperBtns>
     </div>
   );
