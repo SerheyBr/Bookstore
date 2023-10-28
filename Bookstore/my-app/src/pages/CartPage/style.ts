@@ -12,3 +12,28 @@ export const StuledList = styled("ul")`
     margin-bottom: 20px;
   }
 `;
+
+export const WrapperCartImg = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const StuleCartImg = styled("div")`
+  position: relative;
+  max-width: 600px;
+  svg {
+    color: #00000012;
+    height: 100%;
+    width: 100%;
+  }
+  p {
+    white-space: nowrap;
+    font-size: 57px;
+    color: #614d4d6b;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;

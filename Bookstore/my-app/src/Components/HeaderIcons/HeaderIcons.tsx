@@ -3,20 +3,26 @@ import IconCart from "./IconCart/IconCart";
 import IconFavorite from "./IconFavorite/IconFavorite";
 import IconUser from "./IconUser/IconUser";
 import Burger from "../Burger/Burger";
-import { WrapperIcons } from "./style";
+import { WrapperIcons, StyledIcon } from "./style";
 import { Link } from "react-router-dom";
 
 const HeaderIcons = () => {
   return (
     <WrapperIcons>
       <Link to={"/Favorites"}>
-        <IconFavorite />
+        <StyledIcon>
+          <IconFavorite />
+        </StyledIcon>
       </Link>
       <Link to={"/Cart"}>
-        <IconCart />
+        <StyledIcon>
+          <IconCart />
+        </StyledIcon>
       </Link>
       <Link to={"/Account"}>
-        <IconUser />
+        <StyledIcon>
+          <IconUser />
+        </StyledIcon>
       </Link>
       <Burger />
     </WrapperIcons>

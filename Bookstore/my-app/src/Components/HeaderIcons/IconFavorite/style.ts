@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledFavoriteIcon = styled("div")`
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   margin: 0 16px;
   display: flex;
   justify-content: center;
@@ -15,11 +15,17 @@ export const StyledFavoriteIcon = styled("div")`
 `;
 
 export const FavoriteIconCircle = styled("div")`
-  height: 8px;
-  width: 8px;
+  height: 15px;
+  width: 15px;
   background-color: #fc857f;
-  border-radius: 50%;
+  border-radius: 35%;
   position: absolute;
   top: 0px;
-  left: 16px;
+  left: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 10px;
+  }
 `;

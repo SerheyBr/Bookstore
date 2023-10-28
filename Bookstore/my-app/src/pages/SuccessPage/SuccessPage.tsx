@@ -8,78 +8,19 @@ import {
 } from "./style";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { api } from "../../api/api";
 
 const SuccessPage = () => {
   const navigation = useNavigate();
   const { uid, token } = useParams();
-
   const activationToken = {
     uid,
     token,
   };
 
   const postActivation = async (token: any) => {
-    api.activationUser(activationToken);
-    //  axios({
-    //    method: "post",
-    //    url: "https://studapi.teachmeskills.by/auth/users/activation/",
-    //    data: token,
-    //    headers: {
-    //      Accept: "application/json",
-    //      "Content-Type": "application/json",
-    //    },
-    //  });
-    //  console.log("актевировали новый аккаунт");
-    //  const res = fetch(
-    //    "https://studapi.teachmeskills.by/auth/users/activation/",
-    //    {
-    //      method: "POST",
-    //      headers: {
-    //        Accept: "application/json",
-    //        "Content-Type": "application/json",
-    //      },
-    //      body: JSON.stringify(activationToken),
-    //    }
-    //  );
+    api.activationUser(token);
   };
-  //   const postRequest = async (data: any) => {
-  // 	axios({
-  // 	  method: "post",
-  // 	  url: "https://studapi.teachmeskills.by/auth/users/",
-  // 	  data: data,
-  // 	  headers: {
-  // 		 Accept: "application/json",
-  // 		 "Content-Type": "application/json",
-  // 	  },
-  // 	})
-  // 	  .catch((error) => {
-  // 		 if (error.response) {
-  // 			setSuccessMessage(false);
-  // 			const errorInput = error.response.data;
-  // 			errorInput.username
-  // 			  ? errorMessage("username", errorInput.username[0])
-  // 			  : errorMessage("username", "");
-  // 			errorInput.email
-  // 			  ? errorMessage("email", errorInput.email[0])
-  // 			  : errorMessage("email", "");
-  // 			errorInput.password
-  // 			  ? errorMessage("password", errorInput.password[0])
-  // 			  : errorMessage("password", "");
-  // 		 }
-  // 	  })
-  // 	  .then((data: any) => {
-  // 		 if (data) {
-  // 			if (data.status >= 200 && data.status <= 299) {
-  // 			  errorMessage("username", "");
-  // 			  errorMessage("email", "");
-  // 			  errorMessage("password", "");
-  // 			  setSuccessMessage(true);
-  // 			}
-  // 		 }
-  // 	  });
-  //  };
 
   useEffect(() => {
     postActivation(activationToken);

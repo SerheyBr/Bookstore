@@ -3,7 +3,7 @@ import CustomButton from "../CustomButton/CustomButton";
 import { WrapperInfoCart } from "./style";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IBook } from "../../types/types";
-import { priceFormatting } from "../../utilits/priceFormatting";
+import { priceFormatting } from "../../utilits/helpers";
 
 const InfoCart = () => {
   const cart = useTypedSelector((state) => state.books.cart);

@@ -16,7 +16,7 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 import { BooksActions } from "../../store/actions/booksActions";
-import { priceFormatting } from "../../utilits/priceFormatting";
+import { priceFormatting } from "../../utilits/helpers";
 
 const CardInCart = ({ book }: any) => {
   const {

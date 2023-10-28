@@ -13,7 +13,13 @@ const IconFavorite = () => {
         showListResultSearch(false);
       }}
     >
-      {favoritesBooks.length ? <FavoriteIconCircle /> : ""}
+      {favoritesBooks.length ? (
+        <FavoriteIconCircle>
+          <p>{favoritesBooks.length}</p>
+        </FavoriteIconCircle>
+      ) : (
+        ""
+      )}
       <FavoriteBorder />
     </StyledFavoriteIcon>
   );

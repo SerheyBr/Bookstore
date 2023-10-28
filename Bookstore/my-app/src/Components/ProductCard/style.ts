@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const WrapperCard = styled("div")`
+  position: relative;
   width: 33.333%;
   padding: 0 16px;
   margin-bottom: 48px;
   display: flex;
   flex-direction: column;
+  &:hover .card__img {
+    background-color: #e6d6ff;
+  }
 
   @media (max-width: 769px) {
     width: 50%;
@@ -25,6 +29,10 @@ export const ImgCard = styled("div")`
   align-items: center;
   margin-bottom: 21px;
   cursor: pointer;
+  transition: all 0.3s;
+  img {
+    transition: all 0.3s;
+  }
 `;
 
 export const TitleCard = styled("h3")`
@@ -50,4 +58,32 @@ export const PriseCard = styled("p")`
   line-height: 32px;
   justify-self: flex-end;
   margin-top: auto;
+`;
+
+export const StyledNotLikeBtn = styled("div")`
+  position: absolute;
+  top: 5px;
+  right: 13px;
+  transform: translate(-50%);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  svg {
+    color: #bb2eac6b;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+    &:hover {
+      color: #bb2eac;
+    }
+  }
+`;
+
+export const StyledLikeBtn = styled(StyledNotLikeBtn)`
+  /* svg {
+    color: #bb2eacbf;
+    &:hover {
+      color: #bb2eac6b;
+    }
+  } */
 `;

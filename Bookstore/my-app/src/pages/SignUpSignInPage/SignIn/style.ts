@@ -41,3 +41,8 @@ export const StyledMessage = styled("div")`
     font-weight: 700;
   }
 `;
+
+export const StyledError = styled("p")`
+  color: red;
+  font-size: 12px;
+`;

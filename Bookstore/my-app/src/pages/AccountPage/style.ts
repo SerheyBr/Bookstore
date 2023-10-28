@@ -6,7 +6,6 @@ export const StyledTitle = styled("div")`
 
 export const WrapperContent = styled("div")`
   margin-bottom: 50px;
-  border-bottom: 1px solid #e7e7e7;
 `;
 
 export const WrapperUserInfo = styled("div")`
@@ -104,5 +103,53 @@ export const StuledBtnLogout = styled(StuledBtn)`
   @media (max-width: 500px) {
     width: 100%;
     margin-left: 0;
+  }
+`;
+
+export const WrapperItems = styled("div")`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const WrapperBox = styled("div")`
+  position: relative;
+  flex: 1 1 50%;
+  height: 200px;
+  margin: 0 15px;
+  background-color: #c6c9f357;
+  padding: 20px;
+  border-radius: 20px;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 3px 3px 5px #c6c9f3a8;
+  }
+  h4 {
+    font-size: 24px;
+    color: #8b94e3;
+    text-transform: uppercase;
+  }
+  p {
+    color: #0000008f;
+  }
+  div {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    color: #00000029;
+  }
+  span {
+    font-weight: 800;
+  }
+  a {
+    height: 100%;
+    display: block;
+    width: 100%;
   }
 `;

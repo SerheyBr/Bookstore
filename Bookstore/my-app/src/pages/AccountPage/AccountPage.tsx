@@ -3,26 +3,28 @@ import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
 import Title from "../../Components/Title/Title";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import {
-  StuledBtn,
   StuledBtnLogout,
   StyledInput,
   StyledTitle,
+  WrapperBox,
   WrapperBtns,
   WrapperContent,
-  WrapperNewPassword,
-  WrapperPassword,
+  WrapperItems,
   WrapperUserInfo,
 } from "./style";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { UserActions } from "../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { cartItemQuantity } from "../../utilits/helpers";
+import { Link } from "react-router-dom";
 
 const AccountPage = () => {
-  const { uidReset, tokenReset } = useParams();
   const user = useTypedSelector((state) => state.user);
+  const favorites = useTypedSelector((state) => state.books.favorites);
+  const cart = useTypedSelector((state) => state.books.cart);
   const navigation = useNavigate();
   const { userLogout } = UserActions();
   const handlerLogoutBtn = () => {
@@ -31,37 +33,6 @@ const AccountPage = () => {
     userLogout();
     navigation("/SignUpSignIn");
   };
-
-  console.log(uidReset);
-  console.log(tokenReset);
-
-  //   const resetPassword = async (email: any) => {
-  //     return await axios({
-  //       method: "post",
-  //       url: "https://studapi.teachmeskills.by/auth/users/reset_password/",
-  //       data: { email: email },
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //   };
-
-  //   const resetPasswordConfirm = async (email: any) => {
-  //     return await axios({
-  //       method: "post",
-  //       url: "/auth/users/reset_password_confirm/",
-  //       data: { email: email },
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //   };
-
-  //   const resetPasswordData = () => {
-  //     resetPassword(user.email).then((data) => console.log(data));
-  //   };
 
   return (
     <div className="container">
@@ -93,42 +64,42 @@ const AccountPage = () => {
             </StyledInput>
           </div>
         </WrapperUserInfo>
-        {/* <WrapperPassword>
-          <h5>Password</h5>
-          <div>
-            <StyledInput>
-              <CustomInput
-                title={"Password"}
-                type={"Password"}
-                placeholder={"Password"}
-              />
-            </StyledInput>
-            <button
-              onClick={() => {
-                navigation("/password/reset");
-              }}
-            >
-              Reset password
-            </button>
-            <WrapperNewPassword>
-              <StyledInput>
-                <CustomInput
-                  title={"New password"}
-                  type={"Password"}
-                  placeholder={"New password"}
-                />
-              </StyledInput>
+        <WrapperItems>
+          <WrapperBox>
+            <Link to={"/Cart"}>
+              <h4>cart</h4>
+              {cart.length ? (
+                <p>
+                  there are <span>{cartItemQuantity(cart)}</span> items in the
+                  cart
+                </p>
+              ) : (
+                <p>no favorite products</p>
+              )}
+              <div>
+                <FavoriteBorderIcon />
+              </div>
+            </Link>
+          </WrapperBox>
 
-              <StyledInput>
-                <CustomInput
-                  title={"Confirm new password"}
-                  type={"Password"}
-                  placeholder={"Confirm new password"}
-                />
-              </StyledInput>
-            </WrapperNewPassword>
-          </div>
-        </WrapperPassword> */}
+          <WrapperBox>
+            <Link to={"/Favorites"}>
+              <h4>favorites</h4>
+              {favorites.length ? (
+                <p>
+                  there are <span>{favorites.length}</span> products in my
+                  favorites
+                </p>
+              ) : (
+                <p>no favorite products</p>
+              )}
+
+              <div>
+                <ShoppingCartOutlinedIcon />
+              </div>
+            </Link>
+          </WrapperBox>
+        </WrapperItems>
       </WrapperContent>
       <WrapperBtns>
         <StuledBtnLogout>
@@ -140,18 +111,6 @@ const AccountPage = () => {
             }}
           />
         </StuledBtnLogout>
-        {/* <StuledBtn>
-          <CustomButton
-            title={"Save changes"}
-            typebtn={"fill"}
-            onClick={() => {
-              resetPasswordData();
-            }}
-          />
-        </StuledBtn> */}
-        {/* <StuledBtn>
-          <CustomButton title={"cancel"} typebtn={"fill"} />
-        </StuledBtn> */}
       </WrapperBtns>
     </div>
   );

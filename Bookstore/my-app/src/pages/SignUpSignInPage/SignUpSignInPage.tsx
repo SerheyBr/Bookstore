@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import CustomInput from "../../Components/CustomInput/CustomInput";
-import CustomButton from "../../Components/CustomButton/CustomButton";
 import { WrapperContainer } from "./style";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";

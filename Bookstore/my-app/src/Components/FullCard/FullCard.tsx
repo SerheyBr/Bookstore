@@ -26,6 +26,10 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PreviewBook from "../PreviewBook/PreviewBook";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { PrevievBookActions } from "../../store/actions/previewBookAction";
+import {
+  findElementFromArray,
+  saveLocalStorageArray,
+} from "../../utilits/helpers";
 
 const FullCard = ({ book }: any) => {
   const isShowPrewiev = useTypedSelector(
@@ -34,7 +38,7 @@ const FullCard = ({ book }: any) => {
   const { showPreviewBook } = PrevievBookActions();
   const [openMore, setOpenMore] = useState<boolean>(false);
 
-  const handleMore = () => {
+  const handlerMore = () => {
     setOpenMore((prev) => !prev);
   };
 
@@ -46,10 +50,11 @@ const FullCard = ({ book }: any) => {
   } = BooksActions();
   const favorite = useTypedSelector((state) => state.books.favorites);
   const cart = useTypedSelector((state) => state.books.cart);
-  const selectedBookFromArray = (array: IBook[], selectedBook: IBook) => {
-    const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
-    return book;
-  };
+
+  //   const findElementFromArray = (array: IBook[], selectedBook: IBook) => {
+  //     const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
+  //     return book;
+  //   };
 
   useEffect(() => {
     isShowPrewiev
@@ -57,12 +62,17 @@ const FullCard = ({ book }: any) => {
       : (document.body.style.overflow = "visible");
   }, [isShowPrewiev]);
 
+  useEffect(() => {
+    saveLocalStorageArray(favorite, "favorites");
+    saveLocalStorageArray(cart, "cart");
+  }, [favorite, cart]);
+
   return (
     <WrapperFullCard>
       <ItemFullCard>
         <StyledImg>
           <StyledBtnLick>
-            {selectedBookFromArray(favorite, book) ? (
+            {findElementFromArray(favorite, book) ? (
               <FavoriteRoundedIcon
                 onClick={() => {
                   removeFromFavoritesBooks(book);
@@ -126,7 +136,7 @@ const FullCard = ({ book }: any) => {
                 ""
               )}
             </ul>
-            <StyledBtnMore onClick={handleMore}>
+            <StyledBtnMore onClick={handlerMore}>
               {openMore ? (
                 <div>
                   <p>Conceal details</p> <ExpandLessIcon />
@@ -137,11 +147,11 @@ const FullCard = ({ book }: any) => {
                 </div>
               )}
             </StyledBtnMore>
-            {selectedBookFromArray(cart, book) ? (
+            {findElementFromArray(cart, book) ? (
               <StyledBtnAdd>
                 <div>
                   <ShoppingCartOutlinedIcon />
-                  <p>{selectedBookFromArray(cart, book)?.inCart}</p>
+                  <p>{findElementFromArray(cart, book)?.inCart}</p>
                 </div>
                 <CustomButton
                   title={"add more to cart"}

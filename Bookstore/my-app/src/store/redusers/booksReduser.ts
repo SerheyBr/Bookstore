@@ -1,11 +1,27 @@
+import React from "react";
 import { typeBooksActions, IBooksState, booksType } from "../types/books";
 
-const defaultState: IBooksState = {
+const getArrayFromLocalStorage = (key: string) => {
+  const arr: any = localStorage.getItem(key);
+  return JSON.parse(arr);
+};
+
+const cartInLocalStorage = getArrayFromLocalStorage("cart");
+const favoritesInLocalStorage = getArrayFromLocalStorage("favorites");
+
+let defaultState: IBooksState = {
   newRelises: [],
   favorites: [],
   cart: [],
-  //   selectedBook: {},
 };
+
+if (cartInLocalStorage || favoritesInLocalStorage) {
+  defaultState = {
+    ...defaultState,
+    cart: cartInLocalStorage,
+    favorites: favoritesInLocalStorage,
+  };
+}
 
 export const booksReduser = (
   state = defaultState,

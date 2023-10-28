@@ -8,7 +8,7 @@ const CustomPagination = () => {
   return (
     <StyledPagination>
       <Pagination
-        count={10}
+        count={1}
         renderItem={(item) => (
           <PaginationItem
             slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   StyledBtn,
+  StyledError,
   StyledTitle,
   WrapperBody,
   WrapperContainer,
@@ -9,50 +10,55 @@ import {
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
-
-// const resetPasswordConfirm = async (data: any) => {
-//   return await axios({
-//     method: "post",
-//     url: "https://studapi.teachmeskills.by/auth/users/reset_password_confirm/",
-//     data: data,
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//   });
-// };
 
 const NewPasswordPage = () => {
   const navigation = useNavigate();
   const { uidReset, tokenReset } = useParams();
+  const [errorMessage, seteErrorMessage] = useState("");
 
   const newPasswordData = {
     uid: uidReset,
     token: tokenReset,
     new_password: "",
+    confirm_password: "",
   };
 
   const [newPassword, setNewpassword] = useState(newPasswordData);
 
-  const handlerValueInput = (event: any) => {
+  const handlerValueInput = (event: any, name: string) => {
     setNewpassword((prev) => {
-      return { ...prev, new_password: event.target.value };
+      return { ...prev, [name]: event.target.value };
     });
   };
 
-  //   const resetPasswordRequest = () => {
-  //     resetPasswordConfirm(newPassword)
-  //       .then((data) => console.log(data))
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+  const passwordComparison = (password1: string, password2: string) => {
+    if (!(password1 === password2)) {
+      seteErrorMessage("An invalid password has been entered.");
+      return false;
+    }
+    return true;
+  };
+
+  const handlerSetPasswordBtn = () => {
+    seteErrorMessage("");
+    console.log(newPassword);
+    if (
+      passwordComparison(newPassword.new_password, newPassword.confirm_password)
+    ) {
+      api
+        .newPassword(newPassword)
+        .then(() => {
+          navigation("/SignUpSignIn");
+        })
+        .catch((error) => {
+          seteErrorMessage(error.response.data.new_password[0]);
+        });
+    }
+  };
 
   console.log(newPassword);
-
   return (
     <div className="container">
       <WrapperContainer>
@@ -64,26 +70,26 @@ const NewPasswordPage = () => {
               type={"Password"}
               placeholder={"Your Password"}
               onChange={(event: any) => {
-                handlerValueInput(event);
+                handlerValueInput(event, "new_password");
               }}
             />
+            <StyledError>{errorMessage}</StyledError>
           </WrapperInput>
           <WrapperInput>
             <CustomInput
               title={"Confirm password"}
               type={"password"}
               placeholder={"Confirm your password"}
+              onChange={(event: any) => {
+                handlerValueInput(event, "confirm_password");
+              }}
             />
           </WrapperInput>
           <StyledBtn>
             <CustomButton
               title={"set password"}
               typebtn={"fill"}
-              onClick={() => {
-                api.newPassword(newPassword).then(() => {
-                  navigation("/SignUpSignIn");
-                });
-              }}
+              onClick={() => handlerSetPasswordBtn()}
             />
           </StyledBtn>
         </WrapperBody>

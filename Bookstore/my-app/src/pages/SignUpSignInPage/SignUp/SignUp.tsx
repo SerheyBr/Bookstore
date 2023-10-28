@@ -9,7 +9,6 @@ import {
 import CustomInput from "../../../Components/CustomInput/CustomInput";
 import CustomButton from "../../../Components/CustomButton/CustomButton";
 import { api } from "../../../api/api";
-import axios from "axios";
 
 const SignUp = () => {
   const userData = {
@@ -33,50 +32,60 @@ const SignUp = () => {
     });
   };
 
+  const errorCheck = (error: any, inputName: string) => {
+    error[inputName]
+      ? errorMessage(inputName, error[inputName][0])
+      : errorMessage(inputName, "");
+  };
+
   const handlerValueInput = (event: any, nameValue: string) => {
     setInputValue((prev) => {
       return { ...prev, [nameValue]: event.target.value };
     });
   };
 
+  const removegAllErrorMessages = () => {
+    errorMessage("username", "");
+    errorMessage("email", "");
+    errorMessage("password", "");
+  };
+
+  const passwordComparison = (password1: string, password2: string) => {
+    if (!(password1 === password2)) {
+      errorMessage("password", "An invalid password has been entered.");
+      return false;
+    }
+    return true;
+  };
+
   const postRequest = async (data: any) => {
-    //  axios({
-    //    method: "post",
-    //    url: "https://studapi.teachmeskills.by/auth/users/",
-    //    data: data,
-    //    headers: {
-    //      Accept: "application/json",
-    //      "Content-Type": "application/json",
-    //    },
-    //  })
     api
       .authUser(data)
       .catch((error) => {
         if (error.response) {
           setSuccessMessage(false);
           const errorInput = error.response.data;
-          errorInput.username
-            ? errorMessage("username", errorInput.username[0])
-            : errorMessage("username", "");
-          errorInput.email
-            ? errorMessage("email", errorInput.email[0])
-            : errorMessage("email", "");
-          errorInput.password
-            ? errorMessage("password", errorInput.password[0])
-            : errorMessage("password", "");
+          errorCheck(errorInput, "username");
+          errorCheck(errorInput, "email");
+          errorCheck(errorInput, "password");
+          console.log(error);
         }
       })
       .then((data: any) => {
         if (data) {
           if (data.status >= 200 && data.status <= 299) {
-            errorMessage("username", "");
-            errorMessage("email", "");
-            errorMessage("password", "");
+            removegAllErrorMessages();
             setSuccessMessage(true);
           }
         }
       });
-    console.log("завели новый акквунт");
+  };
+
+  const handlerSignUp = async () => {
+    removegAllErrorMessages();
+    if (passwordComparison(inputValue.password, inputValue.confirmPassword)) {
+      postRequest(inputValue);
+    }
   };
 
   return (
@@ -143,9 +152,7 @@ const SignUp = () => {
         <CustomButton
           title={"sign up"}
           typebtn={"fill"}
-          onClick={() => {
-            postRequest(inputValue);
-          }}
+          onClick={() => handlerSignUp()}
         />
       </StyledBtn>
     </WrapperBody>

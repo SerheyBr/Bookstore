@@ -34,9 +34,9 @@ const NewReleasesPage = () => {
             ))
           : ""}
       </WrapperCards>
-      <div>
+      {/* <div>
         <CustomPagination />
-      </div>
+      </div> */}
       <WrapperSubscription>
         <SubscriptionBlock />
       </WrapperSubscription>

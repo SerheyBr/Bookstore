@@ -23,25 +23,6 @@ const Header = () => {
           <InputSearch />
         </StyledInput>
         <HeaderIcons />
-        {/* <p>remove</p> */}
-        <div>
-          <button
-            onClick={() => {
-              counterDecrement();
-            }}
-          >
-            -
-          </button>
-          <p>{count}</p>
-          <button
-            onClick={() => {
-              counterIncrement();
-            }}
-          >
-            +
-          </button>
-          {/* <p>remove</p> */}
-        </div>
       </WrapperHeader>
     </div>
   );
