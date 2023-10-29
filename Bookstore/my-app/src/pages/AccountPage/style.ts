@@ -109,6 +109,9 @@ export const StuledBtnLogout = styled(StuledBtn)`
 export const WrapperItems = styled("div")`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 
 export const WrapperBox = styled("div")`
@@ -151,5 +154,10 @@ export const WrapperBox = styled("div")`
     height: 100%;
     display: block;
     width: 100%;
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    margin-bottom: 15px;
   }
 `;

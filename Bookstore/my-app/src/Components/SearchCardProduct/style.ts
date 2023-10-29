@@ -39,31 +39,3 @@ export const StyledTitle = styled("p")`
     line-height: 26px;
   }
 `;
-
-export const StyledNotLikeBtn = styled("div")`
-  position: absolute;
-  top: 5px;
-  right: 13px;
-  transform: translate(-50%);
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  svg {
-    color: #bb2eac6b;
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s;
-    &:hover {
-      color: #bb2eac;
-    }
-  }
-`;
-
-export const StyledLikeBtn = styled(StyledNotLikeBtn)`
-  /* svg {
-    color: #bb2eacbf;
-    &:hover {
-      color: #bb2eac6b;
-    }
-  } */
-`;

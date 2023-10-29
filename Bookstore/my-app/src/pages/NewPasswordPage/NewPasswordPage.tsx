@@ -14,17 +14,15 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 
 const NewPasswordPage = () => {
-  const navigation = useNavigate();
   const { uidReset, tokenReset } = useParams();
-  const [errorMessage, seteErrorMessage] = useState("");
-
   const newPasswordData = {
     uid: uidReset,
     token: tokenReset,
     new_password: "",
     confirm_password: "",
   };
-
+  const navigation = useNavigate();
+  const [errorMessage, seteErrorMessage] = useState("");
   const [newPassword, setNewpassword] = useState(newPasswordData);
 
   const handlerValueInput = (event: any, name: string) => {
@@ -43,7 +41,7 @@ const NewPasswordPage = () => {
 
   const handlerSetPasswordBtn = () => {
     seteErrorMessage("");
-    console.log(newPassword);
+
     if (
       passwordComparison(newPassword.new_password, newPassword.confirm_password)
     ) {
@@ -58,7 +56,6 @@ const NewPasswordPage = () => {
     }
   };
 
-  console.log(newPassword);
   return (
     <div className="container">
       <WrapperContainer>

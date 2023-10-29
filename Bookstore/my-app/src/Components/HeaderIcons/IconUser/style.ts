@@ -27,7 +27,6 @@ export const StyledUserIcon = styled("div")`
     );
     &:hover {
       box-shadow: 3px 3px 7px #7d0d0d94;
-      /* border: 3px solid #7d0d0d94; */
     }
   }
   p {

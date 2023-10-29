@@ -1,6 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { StyledCarusel, StyledCaruselItem, WrapperHeader } from "./style";
 import { IBook } from "../../types/types";
 import ProductCard from "../ProductCard/ProductCard";
@@ -8,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { Link } from "react-router-dom";
 import { api } from "../../api/api";
 
 interface IProductCarousel {
@@ -31,7 +28,6 @@ const ProductCarousel: FC<IProductCarousel> = ({ title }) => {
       <StyledCarusel>
         <Swiper
           slidesPerView={1}
-          //  navigation={true}
           breakpoints={{
             400: { slidesPerView: 2 },
             800: { slidesPerView: 3 },

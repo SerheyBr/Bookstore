@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "./Components/Layout/Layout";
 import NewReleasesPage from "./pages/NewReleasesPage/NewReleasesPage";
 import FullPostPage from "./pages/FullPostPage/FullPostPage";
@@ -9,16 +9,14 @@ import SignUpSignInPage from "./pages/SignUpSignInPage/SignUpSignInPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import NewPasswordPage from "./pages/NewPasswordPage/NewPasswordPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PrivateRout from "./Components/PrivateRout/PrivateRout";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import { useTypedSelector } from "../src/hooks/useTypedSelector";
 import { UserActions } from "../src/store/actions/userActions";
-import { useNavigate } from "react-router-dom";
 import { api } from "./api/api";
 
 function App() {
-  const navigate = useNavigate();
   const { userAuth } = UserActions();
   const user = useTypedSelector((state) => state.user);
 
@@ -32,12 +30,12 @@ function App() {
         .then((data) => {
           userAuth(data.data);
         })
-        .catch((error) => {
+        .catch(() => {
           const access = JSON.parse(accessToken);
           api
             .virifyToken(access)
-            .then((data) => {})
-            .catch((error) => {
+            .then(() => {})
+            .catch(() => {
               api.getRefreshToken(JSON.parse(refreshToken)).then((data) => {
                 api.retrieveUser(data.data.access).then((data) => {
                   userAuth(data.data);

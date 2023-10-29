@@ -7,6 +7,7 @@ export const WrapperCard = styled("div")`
   margin-bottom: 48px;
   display: flex;
   flex-direction: column;
+
   &:hover .card__img {
     background-color: #e6d6ff;
   }
@@ -60,7 +61,7 @@ export const PriseCard = styled("p")`
   margin-top: auto;
 `;
 
-export const StyledNotLikeBtn = styled("div")`
+export const StyledLikeBtn = styled("div")`
   position: absolute;
   top: 5px;
   right: 13px;
@@ -77,13 +78,4 @@ export const StyledNotLikeBtn = styled("div")`
       color: #bb2eac;
     }
   }
-`;
-
-export const StyledLikeBtn = styled(StyledNotLikeBtn)`
-  /* svg {
-    color: #bb2eacbf;
-    &:hover {
-      color: #bb2eac6b;
-    }
-  } */
 `;

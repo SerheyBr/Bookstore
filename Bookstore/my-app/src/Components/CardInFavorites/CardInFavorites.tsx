@@ -1,6 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import { IBook } from "../../types/types";
+import React from "react";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import {
   StyledIconFavoriteDesk,

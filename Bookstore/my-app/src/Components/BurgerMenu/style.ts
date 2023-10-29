@@ -6,11 +6,9 @@ interface IBurgerMenuProps {
 
 export const StyledBurgerMenu = styled("div")<IBurgerMenuProps>`
   position: fixed;
-  /* top: -36px;
-  left: -351px; */
   top: 0;
   right: 0;
-  width: 400px;
+  width: 100%;
   height: 100vh;
   background-color: #fff;
   transition: all 0.3s;
@@ -19,6 +17,7 @@ export const StyledBurgerMenu = styled("div")<IBurgerMenuProps>`
   padding-bottom: 56px;
   ${(props) => (props.$open ? "display: flex" : "display: none")};
   z-index: 3;
+
   h3 {
     color: #313037;
     font-size: 32px;
@@ -26,7 +25,7 @@ export const StyledBurgerMenu = styled("div")<IBurgerMenuProps>`
     font-weight: 700;
     line-height: 44px;
     text-transform: uppercase;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     cursor: pointer;
   }
 

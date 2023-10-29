@@ -15,7 +15,6 @@ export const WrapperContent = styled("div")`
 
 export const StyledBody = styled("div")`
   position: relative;
-  /* z-index: 5; */
   width: 500px;
   height: 500px;
   background-color: #fff;

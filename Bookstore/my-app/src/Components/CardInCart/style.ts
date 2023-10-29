@@ -69,10 +69,6 @@ export const WrapperCount = styled("div")`
     line-height: 32px;
     padding: 0 16px;
   }
-  @media (max-width: 500px) {
-    /* justify-content: center;
-    flex-wrap: wrap; */
-  }
 `;
 
 export const StyledButton = styled("button")`

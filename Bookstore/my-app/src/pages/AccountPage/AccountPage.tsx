@@ -1,5 +1,5 @@
 import React from "react";
-import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
+import ArrowBackPage from "../../Components/ArrowGoHome/ArrowGoHome";
 import Title from "../../Components/Title/Title";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import {
@@ -27,6 +27,7 @@ const AccountPage = () => {
   const cart = useTypedSelector((state) => state.books.cart);
   const navigation = useNavigate();
   const { userLogout } = UserActions();
+
   const handlerLogoutBtn = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");

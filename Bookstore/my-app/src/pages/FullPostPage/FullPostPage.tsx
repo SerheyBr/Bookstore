@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import EastIcon from "@mui/icons-material/East";
-import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import { IBook } from "../../types/types";
 import {
-  WrapperArrow,
   StyledTitle,
   WrapperFoolCard,
   WrapperTabs,
@@ -23,7 +14,7 @@ import SubscriptionBlock from "../../Components/SubscriptionBlock/SubscriptionBl
 import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
 import CircularProgress from "@mui/material/CircularProgress";
 import SocialLinkIcons from "../../Components/SocialLinkIcons/SocialLinkIcons";
-import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
+import ArrowBackPage from "../../Components/ArrowGoHome/ArrowGoHome";
 import { useParams } from "react-router-dom";
 import { api } from "../../api/api";
 

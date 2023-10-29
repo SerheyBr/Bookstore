@@ -1,14 +1,18 @@
-import React from "react";
+import React, { FC } from "react";
 import { Pagination, PaginationItem } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { StyledPagination } from "./style";
 
-const CustomPagination = () => {
+interface IPaginationProps {
+  pages: number;
+}
+
+const CustomPagination: FC<IPaginationProps> = ({ pages }) => {
   return (
     <StyledPagination>
       <Pagination
-        count={1}
+        count={pages}
         renderItem={(item) => (
           <PaginationItem
             slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}

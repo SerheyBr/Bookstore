@@ -1,11 +1,10 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { FC } from "react";
 import {
   WrapperCard,
   ImgCard,
   TitleCard,
   SubtitleCard,
   PriseCard,
-  StyledNotLikeBtn,
   StyledLikeBtn,
 } from "./style";
 import { IBook } from "../../types/types";
@@ -25,7 +24,7 @@ const ProductCard: FC<IProductCardProps> = ({ book }) => {
   const { removeFromFavoritesBooks, addToFavoriteBooks } = BooksActions();
 
   const isShowSearchList = useTypedSelector((state) => state.search.showList);
-  console.log(isShowSearchList);
+
   return (
     <WrapperCard className="card">
       {findElementFromArray(favorites, book) ? (
@@ -33,9 +32,9 @@ const ProductCard: FC<IProductCardProps> = ({ book }) => {
           <FavoriteIcon />
         </StyledLikeBtn>
       ) : (
-        <StyledNotLikeBtn onClick={() => addToFavoriteBooks(book)}>
+        <StyledLikeBtn onClick={() => addToFavoriteBooks(book)}>
           <FavoriteBorderIcon />
-        </StyledNotLikeBtn>
+        </StyledLikeBtn>
       )}
 
       <Link to={`/Book/${book.isbn13}`}>

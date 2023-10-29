@@ -1,9 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { IBook } from "../../types/types";
 import {
   StyledButton,
-  StyledClose,
   StyledCloseDesk,
   StyledCloseMobile,
   StyledImg,

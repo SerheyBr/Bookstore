@@ -13,6 +13,9 @@ export const StyledCartIcon = styled("div")`
     width: 100%;
     height: 100%;
   }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const CartIconCircle = styled("div")`

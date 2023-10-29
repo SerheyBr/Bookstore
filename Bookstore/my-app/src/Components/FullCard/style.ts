@@ -72,7 +72,6 @@ export const StyledBtnLick = styled("button")`
 `;
 
 export const WrapperBookInfo = styled("div")`
-  /* width: 100%; */
   border-top: 1px solid #e7e7e7;
   padding-top: 40px;
   display: flex;

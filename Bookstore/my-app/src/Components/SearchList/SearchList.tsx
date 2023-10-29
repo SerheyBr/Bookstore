@@ -9,6 +9,7 @@ interface IBook {
 
 const SearchList: FC<IBook> = ({ books }) => {
   const { showListResultSearch } = SearchActions();
+
   return (
     <WrapperSearchList
       onClick={(event) => {

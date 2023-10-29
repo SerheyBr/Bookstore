@@ -19,9 +19,7 @@ import {
 } from "./style";
 import CustomButton from "../CustomButton/CustomButton";
 import RatingStars from "../RatingStars/RatingStars";
-import { useDispatch } from "react-redux";
 import { BooksActions } from "../../store/actions/booksActions";
-import { IBook } from "../../types/types";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PreviewBook from "../PreviewBook/PreviewBook";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -32,6 +30,14 @@ import {
 } from "../../utilits/helpers";
 
 const FullCard = ({ book }: any) => {
+  const {
+    addToFavoriteBooks,
+    removeFromFavoritesBooks,
+    addToCartBooks,
+    addMoreToCartBooks,
+  } = BooksActions();
+  const favorite = useTypedSelector((state) => state.books.favorites);
+  const cart = useTypedSelector((state) => state.books.cart);
   const isShowPrewiev = useTypedSelector(
     (state) => state.previewBook.isShowPreviewBook
   );
@@ -41,20 +47,6 @@ const FullCard = ({ book }: any) => {
   const handlerMore = () => {
     setOpenMore((prev) => !prev);
   };
-
-  const {
-    addToFavoriteBooks,
-    removeFromFavoritesBooks,
-    addToCartBooks,
-    addMoreToCartBooks,
-  } = BooksActions();
-  const favorite = useTypedSelector((state) => state.books.favorites);
-  const cart = useTypedSelector((state) => state.books.cart);
-
-  //   const findElementFromArray = (array: IBook[], selectedBook: IBook) => {
-  //     const book = array.find((el) => el.isbn13 === selectedBook.isbn13);
-  //     return book;
-  //   };
 
   useEffect(() => {
     isShowPrewiev

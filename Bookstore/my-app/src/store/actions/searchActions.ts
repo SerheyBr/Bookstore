@@ -2,8 +2,6 @@ import { useDispatch } from "react-redux";
 import { searchType, typeSearchActions } from "../types/search";
 import { Dispatch } from "redux";
 import { api } from "../../api/api";
-import axios from "axios";
-import { IBook } from "../../types/types";
 
 export const getSearchResult = (search: string) => {
   return async (dispatch: Dispatch<typeSearchActions>) => {

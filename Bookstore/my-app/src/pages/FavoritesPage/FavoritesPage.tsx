@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { IBook } from "../../types/types";
-import ArrowBackPage from "../../Components/ArrowBackPage/ArrowBackPage";
+import ArrowBackPage from "../../Components/ArrowGoHome/ArrowGoHome";
 import { StuleCartImg, StuledList, WrapperTitle } from "./style";
 import Title from "../../Components/Title/Title";
 import CardInFavorites from "../../Components/CardInFavorites/CardInFavorites";
-import SubscriptionBlock from "../../Components/SubscriptionBlock/SubscriptionBlock";
 import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { WrapperCartImg } from "../CartPage/style";
 import { saveLocalStorageArray } from "../../utilits/helpers";
 import CustomPagination from "../../Components/CustomPagination/CustomPagination";
+import { IBook } from "../../types/types";
 
 const FavoritesPage = () => {
   const favoritesBooks = useTypedSelector((state) => state.books.favorites);
@@ -18,6 +17,10 @@ const FavoritesPage = () => {
   useEffect(() => {
     saveLocalStorageArray(favoritesBooks, "favorites");
   }, [favoritesBooks]);
+
+  const handlerPaginations = (arr: IBook[]) => {
+    return arr.length / 5;
+  };
 
   return (
     <div className="container">
@@ -41,7 +44,6 @@ const FavoritesPage = () => {
             </StuleCartImg>
           </WrapperCartImg>
         )}
-        <CustomPagination />
       </StuledList>
       <ProductCarousel title={"Popular Books"} />
     </div>

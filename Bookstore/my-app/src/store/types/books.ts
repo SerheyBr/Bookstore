@@ -1,4 +1,4 @@
-import { IBook, ISelectorBook } from "../../types/types";
+import { IBook } from "../../types/types";
 
 export interface IBooksState {
   newRelises: any[];

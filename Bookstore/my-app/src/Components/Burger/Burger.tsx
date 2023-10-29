@@ -1,29 +1,35 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { StyledBurger, WrapperBurgerMenu } from "./style";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { BurgerMenuActions } from "../../store/actions/burgerMenuActions";
 
 interface IBurgerMenuProps {
   $open?: boolean;
 }
 
 const Burger: FC<IBurgerMenuProps> = ({ $open }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const body = document.body;
+  const { showBurgerMtnu } = BurgerMenuActions();
+  const isOpenBurgerMenu = useTypedSelector(
+    (state) => state.burgerMenu.isShowMenu
+  );
 
   const toggleBurger = () => {
-    setIsOpen((prevState) => (prevState === false ? true : false));
-    isOpen
-      ? (body.style.background = "inherit")
-      : (body.style.background = "rgba(49, 48, 55, 0.50)");
+    if (isOpenBurgerMenu) {
+      showBurgerMtnu(false);
+      document.body.style.overflow = "visible";
+    } else {
+      showBurgerMtnu(true);
+      document.body.style.overflow = "hidden";
+    }
   };
 
   return (
     <WrapperBurgerMenu>
-      <StyledBurger $open={isOpen} onClick={toggleBurger}>
+      <StyledBurger $open={isOpenBurgerMenu} onClick={toggleBurger}>
         <span></span>
       </StyledBurger>
-      <BurgerMenu $open={isOpen} />
+      <BurgerMenu $open={isOpenBurgerMenu} />
     </WrapperBurgerMenu>
   );
 };

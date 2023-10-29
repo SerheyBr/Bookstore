@@ -46,6 +46,7 @@ export const StyledCaruselItem = styled("div")`
     padding: 0;
     text-align: left;
     &__img {
+      overflow: hidden;
       height: 264px;
       img {
         width: 100%;

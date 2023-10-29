@@ -3,7 +3,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { StyledArrowBackPage } from "./style";
 import { useNavigate } from "react-router-dom";
 
-const ArrowBackPage = () => {
+const ArrowGoHome = () => {
   const navigate = useNavigate();
   const goHome = () => {
     navigate("/");
@@ -16,4 +16,4 @@ const ArrowBackPage = () => {
   );
 };
 
-export default ArrowBackPage;
+export default ArrowGoHome;

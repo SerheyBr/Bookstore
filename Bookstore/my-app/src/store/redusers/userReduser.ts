@@ -1,6 +1,5 @@
 import { typeUserActions, IUserState, userAuthType } from "../types/user";
 
-// @ts-ignore
 const defaultState: IUserState = {
   email: "",
   username: "",

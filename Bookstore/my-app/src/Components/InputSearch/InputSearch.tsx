@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  ContentPasteSearchOutlined,
-  SearchOutlined,
-} from "@mui/icons-material";
+import { SearchOutlined } from "@mui/icons-material";
 import { StyledSearchInput, WrapperSearchList } from "./style";
-import SearchCardProduct from "../SearchCardProduct/SearchCardProduct";
 import SearchList from "../SearchList/SearchList";
-import { api } from "../../api/api";
 import { getSearchResult } from "../../store/actions/searchActions";
 import { useDispatch } from "react-redux";
 import { SearchActions } from "../../store/actions/searchActions";
@@ -17,8 +12,6 @@ interface IBook {
 }
 
 const InputSearch = () => {
-  const [books, setBooks] = useState<null | IBook[]>(null);
-  const [showList, setShowList] = useState(false);
   const [value, setValue] = useState("");
   const { showListResultSearch } = SearchActions();
   const isShowList = useTypedSelector((steat) => steat.search.showList);
@@ -28,8 +21,6 @@ const InputSearch = () => {
   useEffect(() => {
     // @ts-ignore
     dispatch(getSearchResult(value));
-
-    //  api.getSearchBooks("mong").then((data) => setBooks(data.books));
   }, [value]);
 
   return (

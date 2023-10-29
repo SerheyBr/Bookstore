@@ -1,55 +1,25 @@
-import React, { FC, useEffect, useState } from "react";
-import {
-  StyledImg,
-  StyledLikeBtn,
-  StyledNotLikeBtn,
-  StyledTitle,
-  WrapperCardSearch,
-} from "./style";
-import { api } from "../../api/api";
+import React, { FC } from "react";
+import { StyledImg, StyledTitle, WrapperCardSearch } from "./style";
 import { Link } from "react-router-dom";
 import { SearchActions } from "../../store/actions/searchActions";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { BooksActions } from "../../store/actions/booksActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { findElementFromArray } from "../../utilits/helpers";
+import { BurgerMenuActions } from "../../store/actions/burgerMenuActions";
 
 interface IBook {
   book: any;
 }
 
 const SearchCardProduct: FC<IBook> = ({ book }) => {
-  const favorites = useTypedSelector((state) => state.books.favorites);
-  const { removeFromFavoritesBooks, addToFavoriteBooks } = BooksActions();
+  const { showBurgerMtnu } = BurgerMenuActions();
   const { showListResultSearch } = SearchActions();
-  const isShowSearchList = useTypedSelector((state) => state.search.showList);
 
-  const handlerBtnAddFavorites = () => {};
+  const handlerLink = () => {
+    showBurgerMtnu(false);
+    document.body.style.overflow = "visible";
+  };
 
-  console.log(isShowSearchList);
   return (
-    <Link to={`/Book/${book.isbn13}`}>
+    <Link to={`/Book/${book.isbn13}`} onClick={() => handlerLink()}>
       <WrapperCardSearch onClick={() => showListResultSearch(false)}>
-        {/* {findElementFromArray(favorites, book) ? (
-          <StyledLikeBtn
-            onClick={(event) => {
-              showListResultSearch(true);
-              removeFromFavoritesBooks(book);
-            }}
-          >
-            <FavoriteIcon />
-          </StyledLikeBtn>
-        ) : (
-          <StyledNotLikeBtn
-            onClick={(event) => {
-              addToFavoriteBooks(book);
-              showListResultSearch(true);
-            }}
-          >
-            <FavoriteBorderIcon />
-          </StyledNotLikeBtn>
-        )} */}
         <StyledImg>
           <div>
             <img src={book.image} />

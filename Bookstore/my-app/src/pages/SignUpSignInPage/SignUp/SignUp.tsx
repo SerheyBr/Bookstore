@@ -17,13 +17,8 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   };
-  const errorEnterUser = {
-    username: "",
-    email: "",
-    password: "",
-  };
   const [inputValue, setInputValue] = useState(userData);
-  const [errorEnter, setErrorEnter] = useState(errorEnterUser);
+  const [errorEnter, setErrorEnter] = useState(userData);
   const [successMessage, setSuccessMessage] = useState(false);
 
   const errorMessage = (inputName: string, message: string) => {

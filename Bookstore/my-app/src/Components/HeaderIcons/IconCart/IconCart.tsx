@@ -3,7 +3,6 @@ import { LocalMallOutlined } from "@mui/icons-material";
 import { StyledCartIcon, CartIconCircle } from "./style";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { SearchActions } from "../../../store/actions/searchActions";
-import { IBook } from "../../../types/types";
 import { cartItemQuantity } from "../../../utilits/helpers";
 
 const IconCart = () => {

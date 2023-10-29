@@ -1,18 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import InputSearch from "../InputSearch/InputSearch";
 import HeaderIcons from "../HeaderIcons/HeaderIcons";
 import { WrapperHeader, HeaderTitle, StyledInput } from "./style";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { ConterActions } from "../../store/actions/counterActions";
 
 const Header = () => {
-  //remove
-  const { counterDecrement, counterIncrement } = ConterActions();
-  const count = useTypedSelector((state) => state.counter.counter);
-
-  //remove
   return (
     <div className="container">
       <WrapperHeader>

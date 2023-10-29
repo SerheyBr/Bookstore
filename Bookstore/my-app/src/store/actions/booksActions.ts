@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { booksType, typeBooksActions } from "../types/books";
 import { Dispatch } from "redux";
 import { api } from "../../api/api";
-import axios from "axios";
 import { IBook } from "../../types/types";
 
 export const getNewRelises = () => {

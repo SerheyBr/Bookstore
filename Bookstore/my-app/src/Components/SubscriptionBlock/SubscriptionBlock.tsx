@@ -1,7 +1,6 @@
 import React from "react";
 import { WrapperSubscriptionBlock, StyledButton } from "./style";
 import CustomButton from "../CustomButton/CustomButton";
-import Title from "../Title/Title";
 
 const SubscriptionBlock = () => {
   return (
