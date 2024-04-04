@@ -6,14 +6,16 @@ import { getSearchResult } from "../../store/actions/searchActions";
 import { useDispatch } from "react-redux";
 import { SearchActions } from "../../store/actions/searchActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useNavigate } from "react-router-dom";
 
 interface IBook {
   book: any;
 }
 
 const InputSearch = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
-  const { showListResultSearch } = SearchActions();
+  const { showListResultSearch, getStringResultSearch } = SearchActions();
   const isShowList = useTypedSelector((steat) => steat.search.showList);
   const searchResult = useTypedSelector((state) => state.search.searchResult);
 
@@ -34,11 +36,16 @@ const InputSearch = () => {
             showListResultSearch(true);
           }}
           onChange={(event) => {
+            getStringResultSearch(event.target.value);
             setValue(event.target.value);
             showListResultSearch(true);
           }}
         />
-        <SearchOutlined />
+        <SearchOutlined
+          onClick={() => {
+            navigate("/search");
+          }}
+        />
       </StyledSearchInput>
       {searchResult && searchResult.length && isShowList ? (
         <SearchList books={searchResult} />

@@ -5,8 +5,10 @@ import { SearchActions } from "../../../store/actions/searchActions";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
 const IconUser = () => {
-  const userName = useTypedSelector((state) => state.user.username);
-  const userInitial = userName.split("")[0];
+  const user = useTypedSelector((state) => state.user);
+  const userEmail = user.email;
+  const userInitial = userEmail.split("")[0];
+
   const { showListResultSearch } = SearchActions();
   return (
     <StyledUserIcon
@@ -14,7 +16,7 @@ const IconUser = () => {
         showListResultSearch(false);
       }}
     >
-      {userName ? (
+      {userEmail ? (
         <div>
           <p>{userInitial}</p>
         </div>

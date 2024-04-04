@@ -1,99 +1,72 @@
 import React, { useEffect, useState } from "react";
 import CustomInput from "../../../Components/CustomInput/CustomInput";
 import CustomButton from "../../../Components/CustomButton/CustomButton";
-import {
-  StyledBtn,
-  StyledError,
-  StyledMessage,
-  StyledText,
-  WrapperBody,
-  WrapperInput,
-} from "./style";
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import { StyledBtn, StyledError, WrapperBody, WrapperInput } from "./style";
 import { UserActions } from "../../../store/actions/userActions";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../../api/api";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const SignIn = () => {
+  const { setUser }: { setUser: any } = UserActions();
   const navigation = useNavigate();
-  const user = useTypedSelector((state) => state.user);
+  const user: any = useSelector<RootState>((state) => state.user);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { userAuth } = UserActions();
-  const userInfo = {
-    email: "",
-    password: "",
-  };
-  const [userData, setUserData] = useState(userInfo);
 
-  const loginUser = () => {
-    api
-      .createJwtToken(userData)
-      .then((res) => {
-        if (res.data) {
-          localStorage.setItem("access_token", JSON.stringify(res.data.access));
-          localStorage.setItem(
-            "refresh_token",
-            JSON.stringify(res.data.refresh)
-          );
-        }
+  const hendlerLogIn = (email: any, password: any) => {
+    const auth = getAuth();
 
-        api.retrieveUser(res.data.access).then((res) => {
-          if (res.data.id) {
-            userAuth(res.data);
-            navigation("/");
-          }
-        });
+    signInWithEmailAndPassword(auth, email, pass)
+      .then(({ user }: { user: any }) => {
+        setUser({ email: user.email, id: user.uid, token: user.accessToken });
       })
       .catch((error) => {
-        setErrorMessage(error.response.data.detail);
-        console.log(error.response.data.detail);
+        const errorCode = error.code;
+        setErrorMessage(errorCode);
       });
   };
 
-  const handlerValueInput = (event: any, nameValue: string) => {
-    setUserData((prev) => {
-      return { ...prev, [nameValue]: event.target.value };
-    });
-  };
+  useEffect(() => {
+    if (user.id) {
+      navigation("/");
+    }
+  }, [user]);
 
   return (
     <WrapperBody>
-      {user.username ? (
-        <StyledMessage>
-          Hello <span>{user.username}</span>!
-        </StyledMessage>
-      ) : (
-        ""
-      )}
       <WrapperInput>
         <CustomInput
+          value={email}
           title={"Email"}
           type={"text"}
-          placeholder={"Your email"}
-          onChange={(event: any) => handlerValueInput(event, "email")}
+          placeholder={"Email"}
+          onChange={(event: any) => {
+            setEmail(event.target.value);
+          }}
         />
       </WrapperInput>
       <WrapperInput>
         <CustomInput
+          value={pass}
           title={"Password"}
           type={"password"}
-          placeholder={"Your password"}
-          onChange={(event: any) => handlerValueInput(event, "password")}
+          placeholder={"Password"}
+          onChange={(event: any) => {
+            setPass(event.target.value);
+          }}
         />
       </WrapperInput>
-      <StyledText
-        onClick={() => {
-          navigation("/password/reset");
-        }}
-      >
-        Forgot password ?
-      </StyledText>
       {errorMessage ? <StyledError>{errorMessage}</StyledError> : ""}
       <StyledBtn>
         <CustomButton
           title={"sign in"}
           typebtn={"fill"}
-          onClick={() => loginUser()}
+          onClick={() => {
+            hendlerLogIn(email, pass);
+          }}
         />
       </StyledBtn>
     </WrapperBody>

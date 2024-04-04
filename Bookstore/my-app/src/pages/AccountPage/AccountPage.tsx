@@ -20,18 +20,24 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { cartItemQuantity } from "../../utilits/helpers";
 import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 const AccountPage = () => {
   const user = useTypedSelector((state) => state.user);
   const favorites = useTypedSelector((state) => state.books.favorites);
   const cart = useTypedSelector((state) => state.books.cart);
+  const { removeUser } = UserActions();
   const navigation = useNavigate();
-  const { userLogout } = UserActions();
+  const auth = getAuth();
 
   const handlerLogoutBtn = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    userLogout();
+    signOut(auth)
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+
+    removeUser();
     navigation("/SignUpSignIn");
   };
 
@@ -49,7 +55,7 @@ const AccountPage = () => {
               <CustomInput
                 title={"Name"}
                 type={"text"}
-                value={user.username}
+                value={user.userName}
                 placeholder={"Name"}
                 dislabel={true}
               />
@@ -105,12 +111,15 @@ const AccountPage = () => {
       <WrapperBtns>
         <StuledBtnLogout>
           <CustomButton
-            title={"logout"}
+            title={`logout`}
             typebtn={"fill"}
             onClick={() => {
               handlerLogoutBtn();
             }}
           />
+          <p>
+            log out <span> {user.email}</span>
+          </p>
         </StuledBtnLogout>
       </WrapperBtns>
     </div>

@@ -2,22 +2,28 @@ import { typeUserActions, IUserState, userAuthType } from "../types/user";
 
 const defaultState: IUserState = {
   email: "",
-  username: "",
+  token: "",
+  id: "",
+  userName: "",
 };
 
 export const userReduser = (state = defaultState, action: typeUserActions) => {
   switch (action.type) {
-    case userAuthType.USER_AUTH:
+    case userAuthType.SET_USER:
       return {
         ...state,
         email: action.payload.email,
-        username: action.payload.username,
+        token: action.payload.token,
+        id: action.payload.id,
+        userName: action.payload.userName,
       };
-    case userAuthType.USER_LOGOUT:
+    case userAuthType.REMOVE_USER:
       return {
         ...state,
         email: "",
-        username: "",
+        token: "",
+        id: "",
+        userName: "",
       };
     default:
       return state;

@@ -1,20 +1,22 @@
 export interface IUserState {
   email: string;
-  username: string;
+  token: string;
+  id: string;
+  userName: string;
 }
 
 export enum userAuthType {
-  USER_AUTH = "USER_AUTH",
-  USER_LOGOUT = "USER_LOGOUT",
+  SET_USER = "SET_USER",
+  REMOVE_USER = "REMOVE_USER",
 }
 
 interface IUserAction {
-  type: userAuthType.USER_AUTH;
+  type: userAuthType.SET_USER;
   payload: IUserState;
 }
 
 interface IUserLogoutAction {
-  type: userAuthType.USER_LOGOUT;
+  type: userAuthType.REMOVE_USER;
 }
 
 export type typeUserActions = IUserAction | IUserLogoutAction;

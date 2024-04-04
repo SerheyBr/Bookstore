@@ -3,11 +3,13 @@ import { IBook } from "../../types/types";
 export interface ISearchState {
   searchResult: any[];
   showList: boolean;
+  stringResultSearch: string;
 }
 
 export enum searchType {
   SEARCH_RESULT = "SEARCH_RESULT",
   SHOW_LIST_RESULT = "SHOW_LIST_RESULT",
+  STRING_RESULT_SEARCH = "STRING_RESULT_SEARCH",
 }
 
 interface ISearchResultAction {
@@ -20,4 +22,12 @@ interface IShowListResultAction {
   payload: boolean;
 }
 
-export type typeSearchActions = ISearchResultAction | IShowListResultAction;
+interface IStringResultSearchAction {
+  type: searchType.STRING_RESULT_SEARCH;
+  payload: string;
+}
+
+export type typeSearchActions =
+  | ISearchResultAction
+  | IShowListResultAction
+  | IStringResultSearchAction;

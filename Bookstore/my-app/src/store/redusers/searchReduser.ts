@@ -3,6 +3,7 @@ import { typeSearchActions, searchType, ISearchState } from "../types/search";
 const defaultState: ISearchState = {
   searchResult: [],
   showList: true,
+  stringResultSearch: "",
 };
 
 export const searchReduser = (
@@ -14,6 +15,8 @@ export const searchReduser = (
       return { ...state, searchResult: action.payload };
     case searchType.SHOW_LIST_RESULT:
       return { ...state, showList: action.payload };
+    case searchType.STRING_RESULT_SEARCH:
+      return { ...state, stringResultSearch: action.payload };
     default:
       return state;
   }

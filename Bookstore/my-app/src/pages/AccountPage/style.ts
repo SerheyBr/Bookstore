@@ -99,6 +99,14 @@ export const StuledBtnLogout = styled(StuledBtn)`
       background-color: #392a2ad4;
     }
   }
+  p {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #00000061;
+  }
+  span {
+    color: #000000d4;
+  }
 
   @media (max-width: 500px) {
     width: 100%;

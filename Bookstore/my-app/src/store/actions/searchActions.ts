@@ -21,5 +21,7 @@ export const SearchActions = () => {
   return {
     showListResultSearch: (payload: boolean) =>
       dispatch({ type: searchType.SHOW_LIST_RESULT, payload: payload }),
+    getStringResultSearch: (payload: string) =>
+      dispatch({ type: searchType.STRING_RESULT_SEARCH, payload: payload }),
   };
 };

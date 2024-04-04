@@ -24,10 +24,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PreviewBook from "../PreviewBook/PreviewBook";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { PrevievBookActions } from "../../store/actions/previewBookAction";
-import {
-  findElementFromArray,
-  saveLocalStorageArray,
-} from "../../utilits/helpers";
+import { findElementFromArray } from "../../utilits/helpers";
 
 const FullCard = ({ book }: any) => {
   const {
@@ -54,17 +51,12 @@ const FullCard = ({ book }: any) => {
       : (document.body.style.overflow = "visible");
   }, [isShowPrewiev]);
 
-  useEffect(() => {
-    saveLocalStorageArray(favorite, "favorites");
-    saveLocalStorageArray(cart, "cart");
-  }, [favorite, cart]);
-
   return (
     <WrapperFullCard>
       <ItemFullCard>
         <StyledImg>
           <StyledBtnLick>
-            {findElementFromArray(favorite, book) ? (
+            {favorite && findElementFromArray(favorite, book) ? (
               <FavoriteRoundedIcon
                 onClick={() => {
                   removeFromFavoritesBooks(book);

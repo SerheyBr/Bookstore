@@ -27,7 +27,7 @@ const ProductCard: FC<IProductCardProps> = ({ book }) => {
 
   return (
     <WrapperCard className="card">
-      {findElementFromArray(favorites, book) ? (
+      {favorites && findElementFromArray(favorites, book) ? (
         <StyledLikeBtn onClick={() => removeFromFavoritesBooks(book)}>
           <FavoriteIcon />
         </StyledLikeBtn>
