@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename="/Boostore">
+    <BrowserRouter basename="/Bookstore">
       <App />
     </BrowserRouter>
   </Provider>
