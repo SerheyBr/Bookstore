@@ -24,7 +24,8 @@ const CardInFavorites = ({ book }: any) => {
             <img src={book.image} />
           </div>
           <StyledIconFavoriteMobile
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               removeFromFavoritesBooks(book);
             }}
           >

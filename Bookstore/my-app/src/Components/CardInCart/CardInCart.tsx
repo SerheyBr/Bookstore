@@ -35,7 +35,12 @@ const CardInCart = ({ book }: any) => {
           <div>
             <img src={book.image} />
           </div>
-          <StyledCloseMobile>
+          <StyledCloseMobile
+            onClick={(event) => {
+              event.preventDefault();
+              removeCollectionBooksFromCartAction(book);
+            }}
+          >
             <CloseIcon />
           </StyledCloseMobile>
         </StyledImg>
@@ -70,7 +75,9 @@ const CardInCart = ({ book }: any) => {
         </WrapperCount>
       </WrapperBody>
       <StyledCloseDesk
-        onClick={() => {
+        onClick={(event) => {
+          //  event.stopPropagation();
+          console.log("asd");
           removeCollectionBooksFromCartAction(book);
         }}
       >

@@ -30,4 +30,16 @@ export const StuleCartImg = styled("div")`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @media (max-width: 530px) {
+    p {
+      font-size: 42px;
+    }
+  }
+  @media (max-width: 400px) {
+    max-width: 200px;
+    p {
+      font-size: 30px;
+    }
+  }
 `;

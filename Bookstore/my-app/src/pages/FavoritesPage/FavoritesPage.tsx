@@ -10,9 +10,15 @@ import { WrapperCartImg } from "../CartPage/style";
 import { saveLocalStorageArray } from "../../utilits/helpers";
 import CustomPagination from "../../Components/CustomPagination/CustomPagination";
 import { IBook } from "../../types/types";
+import { useNavigate } from "react-router-dom";
 
 const FavoritesPage = () => {
   const favoritesBooks = useTypedSelector((state) => state.books.favorites);
+  const navigation = useNavigate();
+
+  //   useEffect(() => {
+  //     navigation("/Favorites");
+  //   }, []);
 
   useEffect(() => {
     saveLocalStorageArray(favoritesBooks, "favorites");

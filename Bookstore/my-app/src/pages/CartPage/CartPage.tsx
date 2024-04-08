@@ -12,9 +12,15 @@ import ArrowBackPage from "../../Components/ArrowGoHome/ArrowGoHome";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { saveLocalStorageArray } from "../../utilits/helpers";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const navigation = useNavigate();
   const cartBooks = useTypedSelector((state) => state.books.cart);
+
+  //   useEffect(() => {
+  //     navigation("/cart");
+  //   }, []);
 
   useEffect(() => {
     saveLocalStorageArray(cartBooks, "cart");

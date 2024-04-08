@@ -120,6 +120,7 @@ export const StyledCloseMobile = styled(StyledClose)`
   top: 0;
   right: 0;
   background-color: #313037;
+  background: red;
   @media (min-width: 580px) {
     display: none;
   }
