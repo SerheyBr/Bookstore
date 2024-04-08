@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div id="app">
-      <Routes>
+      <Routes basename="/Bookstore">
         <Route path="/" element={<Layout />}>
           <Route index element={<NewReleasesPage />}></Route>
           <Route path="/Cart" element={<CartPage />}></Route>
