@@ -38,8 +38,8 @@ function App() {
 
   return (
     <div id="app">
-      <Routes basename="/Bookstore">
-        <Route path="/" element={<Layout />}>
+      <Routes>
+        <Route path="/Bookstore" element={<Layout />}>
           <Route index element={<NewReleasesPage />}></Route>
           <Route path="/Cart" element={<CartPage />}></Route>
           <Route
